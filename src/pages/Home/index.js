@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
+import Categories from '../../components/Categories';
 
 class Home extends Component {
   render() {
     return (
-      <div>
-
-        Home
+      <div className="home-page">
+        <Categories />
         <p
           data-testid="home-initial-message"
         >
