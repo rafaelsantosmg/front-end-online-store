@@ -4,6 +4,7 @@ class Home extends Component {
   render() {
     return (
       <div>
+
         Home
         <p
           data-testid="home-initial-message"

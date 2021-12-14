@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import logoHeader from '../../images/mercadolibre.svg';
 import Search from '../Search';
-import Cart from '../Cart';
+import Cart from '../ButtonCart';
 
 import './styles.css';
 
