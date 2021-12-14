@@ -6,7 +6,7 @@ class index extends Component {
     return (
       <Link to="/cart">
         {' '}
-        <i className="fas fa-shopping-cart fa-3x" />
+        <i className="fas fa-shopping-cart fa-2x" data-testid="shopping-cart-button" />
       </Link>
     );
   }
