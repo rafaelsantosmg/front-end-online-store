@@ -6,6 +6,12 @@ class Home extends Component {
     return (
       <div className="home-page">
         <Categories />
+        <p
+          data-testid="home-initial-message"
+        >
+          Digite algum termo de pesquisa ou escolha uma categoria.
+
+        </p>
       </div>
     );
   }
