@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import logoHeader from '../../images/mercadolibre.svg';
 import Search from '../Search';
+import Cart from '../ButtonCart';
+
 import './styles.css';
 
 class Header extends Component {
@@ -14,7 +16,7 @@ class Header extends Component {
           </Link>
         </figure>
         <Search />
-        <div className="cart" />
+        <Cart />
       </header>
     );
   }
