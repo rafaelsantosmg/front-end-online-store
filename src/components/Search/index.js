@@ -11,9 +11,10 @@ class Search extends Component {
           placeholder="Recipient's username"
           aria-label="Recipient's username"
           aria-describedby="basic-addon2"
+
         />
         <Button variant="outline-secondary" id="button-addon2">
-          
+          <i className="fas fa-search-dollar" />
         </Button>
       </InputGroup>
     );
