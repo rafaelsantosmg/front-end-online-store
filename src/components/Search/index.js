@@ -2,11 +2,12 @@ import React, { Component } from 'react';
 import InputGroup from 'react-bootstrap/InputGroup';
 import FormControl from 'react-bootstrap/FormControl';
 import Button from 'react-bootstrap/Button';
+import './styles.css';
 
 class Search extends Component {
   render() {
     return (
-      <InputGroup className="mb-3">
+      <InputGroup className="mb-3 search">
         <FormControl
           placeholder="Recipient's username"
           aria-label="Recipient's username"
