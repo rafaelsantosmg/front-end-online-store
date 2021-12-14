@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/Button';
 import { getCategories } from '../../services/api';
 import './styles.css';
@@ -24,6 +25,7 @@ export default class Categories extends Component {
 
   render() {
     const { categories } = this.state;
+    const { handleClick } = this.props;
     return (
       <div className="category btn-dark">
         {categories.map((category) => (
@@ -31,6 +33,7 @@ export default class Categories extends Component {
             data-testid="category"
             key={ category.id }
             variant="dark"
+            onClick={ () => handleClick(category.id, '') }
           >
             { category.name }
           </Button>
@@ -39,3 +42,11 @@ export default class Categories extends Component {
     );
   }
 }
+
+Categories.propTypes = {
+  handleClick: PropTypes.func,
+};
+
+Categories.defaultProps = {
+  handleClick: () => {},
+};
