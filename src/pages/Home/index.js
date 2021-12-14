@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Cards from '../../components/Cards/Cards';
 import Categories from '../../components/Categories';
 
@@ -22,4 +23,15 @@ class Home extends Component {
   }
 }
 
+Home.propTypes = {
+  handleClick: PropTypes.func,
+  products: PropTypes.arrayOf(PropTypes.shape({
+    title: PropTypes.string,
+    price: PropTypes.number,
+  })).isRequired,
+};
+
+Home.defaultProps = {
+  handleClick: () => {},
+};
 export default Home;
