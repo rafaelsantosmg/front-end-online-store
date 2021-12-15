@@ -25,7 +25,7 @@ class App extends Component {
     const { products } = this.state;
     return (
       <BrowserRouter>
-        <Header />
+        <Header handleClick={ this.handleClick } products={ products } />
         <Routes handleClick={ this.handleClick } products={ products } />
       </BrowserRouter>
     );

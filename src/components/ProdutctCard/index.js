@@ -8,7 +8,7 @@ class ProdutctCard extends Component {
     const { title, price, thumbnail } = this.props;
     return (
 
-      <Card style={ { width: '18rem' } }>
+      <Card data-testid="product" style={ { width: '18rem' } }>
         <Card.Img variant="top" src={ thumbnail } />
         <Card.Body>
           <Card.Title>{title}</Card.Title>
@@ -18,12 +18,6 @@ class ProdutctCard extends Component {
           <Button variant="primary">Go somewhere</Button>
         </Card.Body>
       </Card>
-      // <div data-testid="product">
-      //   <h3>{title}</h3>
-      //   <img src={ thumbnail } alt={ title } />
-      //   <p>{price}</p>
-      //   <p>{idProduct}</p>
-      // </div>
     );
   }
 }
