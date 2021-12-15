@@ -1,0 +1,6 @@
+.cards-contaniner {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+}
