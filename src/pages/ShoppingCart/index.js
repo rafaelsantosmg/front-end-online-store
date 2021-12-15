@@ -1,6 +1,32 @@
 import React, { Component } from 'react';
 
 class ShoppingCart extends Component {
+  // constructor() {
+  //   super();
+  //   this.state = {
+  //     products: [],
+  //     quantity: 0,
+  //   };
+  // }
+
+  // componentDidMount() {
+  //   this.filterProductWithQuantity();
+  // }
+
+  // filterProductWithQuantity = () => {
+  //   const { cartProduct } = this.props;
+  //   const filterProduct = cartProduct.reduce((acc, product) => {
+  //     console.log(acc, product);
+  //     if (acc.id === product.id) {
+  //       console.log('achou');
+  //       this.setState((prevState) => ({
+  //         quantity: prevState.quantity + 1,
+  //       }));
+  //     }
+  //     return product;
+  //   });
+  // };
+
   render() {
     return (
       <div>
