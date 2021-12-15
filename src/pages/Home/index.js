@@ -8,7 +8,7 @@ import Categories from '../../components/Categories';
 
 class Home extends Component {
   render() {
-    const { handleClick, products } = this.props;
+    const { handleClick, addProductCart, products } = this.props;
     return (
       <Container fluid>
         <Row>
@@ -22,7 +22,10 @@ class Home extends Component {
               Digite algum termo de pesquisa ou escolha uma categoria.
 
             </p>
-            <Cards products={ products } />
+            <Cards
+              products={ products }
+              addProductCart={ addProductCart }
+            />
           </Col>
         </Row>
       </Container>
@@ -32,6 +35,7 @@ class Home extends Component {
 
 Home.propTypes = {
   handleClick: PropTypes.func,
+  addProductCart: PropTypes.func,
   products: PropTypes.arrayOf(PropTypes.shape({
     title: PropTypes.string,
     price: PropTypes.number,
@@ -40,5 +44,7 @@ Home.propTypes = {
 
 Home.defaultProps = {
   handleClick: () => {},
+  addProductCart: () => {},
 };
+
 export default Home;

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import ProdutctCard from '../ProdutctCard';
 
@@ -7,23 +6,19 @@ import './Cards.css';
 
 class Cards extends Component {
   render() {
-    const { products } = this.props;
+    const { products, addProductCart } = this.props;
     return (
       <div className="cards-contaniner">
-        {products.map((product) => (
-          <Link
+        { products.map((product) => (
+          <ProdutctCard
             key={ product.id }
-            to={ `/details/${product.id} ` }
-            data-testid="product-detail-link"
-          >
-            <ProdutctCard
-              title={ product.title }
-              price={ product.price }
-              thumbnail={ product.thumbnail }
-              idProduct={ product.id }
-            />
-          </Link>
-        ))}
+            addProductCart={ addProductCart }
+            title={ product.title }
+            price={ product.price }
+            thumbnail={ product.thumbnail }
+            idProduct={ product.id }
+          />
+        )) }
       </div>
 
     );
@@ -31,10 +26,15 @@ class Cards extends Component {
 }
 
 Cards.propTypes = {
+  addProductCart: PropTypes.func,
   products: PropTypes.arrayOf(PropTypes.shape({
     title: PropTypes.string,
     price: PropTypes.number,
   })).isRequired,
+};
+
+Cards.defaultProps = {
+  addProductCart: () => { },
 };
 
 export default Cards;
