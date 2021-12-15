@@ -9,7 +9,7 @@ class Search extends Component {
     return (
       <InputGroup className="mb-3 search">
         <FormControl
-          placeholder="Recipient's username"
+          placeholder="Buscar produtos"
           aria-label="Recipient's username"
           aria-describedby="basic-addon2"
 
