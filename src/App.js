@@ -15,29 +15,26 @@ class App extends Component {
     };
   }
 
-  filterProductWithQuantity = (cartProducts, filterProduct) => {
-    const changeProductQuantity = cartProducts
-      .find((product) => product.id === filterProduct.id);
-    changeProductQuantity.quantity = 10;
-    this.setState({
-      cartProduct: [changeProductQuantity],
-    });
-  };
-
   addProductCart = (idProduct) => {
-    const { products } = this.state;
-    const findProduct = products.find((product) => product.id === idProduct);
-    findProduct.quantity = 0;
-    this.setState((prevState) => (
-      {
-        cartProduct: [...prevState.cartProduct,
-          prevState.cartProduct.id === findProduct.id
-            ?  : findProduct],
+    const { products, cartProduct } = this.state;
+    let sameProduct = false;
+    cartProduct.forEach((product) => {
+      if (product.id === idProduct) {
+        if (product.quantity) {
+          product.quantity += 1;
+        } else {
+          product.quantity = 2;
+        }
+        sameProduct = true;
       }
-    ), () => {
-      // const { cartProduct } = this.state;
-      // this.filterProductWithQuantity(cartProduct, findProduct);
     });
+    if (!sameProduct) {
+      this.setState((prevState) => ({
+        cartProduct: [...prevState.cartProduct,
+          products.find((product) => product.id === idProduct)],
+      }
+      ));
+    }
   };
 
   handleClick = async (category = '', query = '') => {

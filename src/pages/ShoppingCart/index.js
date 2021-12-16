@@ -1,41 +1,62 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 class ShoppingCart extends Component {
-  // constructor() {
-  //   super();
-  //   this.state = {
-  //     products: [],
-  //     quantity: 0,
-  //   };
-  // }
+  constructor() {
+    super();
+    this.state = {
+      products: [],
+    };
+  }
 
-  // componentDidMount() {
-  //   this.filterProductWithQuantity();
-  // }
+  componentDidMount() {
+    this.filterProductWithQuantity();
+  }
 
-  // filterProductWithQuantity = () => {
-  //   const { cartProduct } = this.props;
-  //   const filterProduct = cartProduct.reduce((acc, product) => {
-  //     console.log(acc, product);
-  //     if (acc.id === product.id) {
-  //       console.log('achou');
-  //       this.setState((prevState) => ({
-  //         quantity: prevState.quantity + 1,
-  //       }));
-  //     }
-  //     return product;
-  //   });
-  // };
+  filterProductWithQuantity = () => {
+    const { cartProduct } = this.props;
+    this.setState(() => ({
+      products: cartProduct,
+    }));
+  };
 
   render() {
+    const { products } = this.state;
     return (
       <div>
         <h1>Carrinho de compras</h1>
-        <i className="fas fa-box-open fa-9x" />
-        <p data-testid="shopping-cart-empty-message">Seu carrinho está vazio</p>
+
+        {products.length === 0 && (
+          <div>
+            <i className="fas fa-box-open fa-9x" />
+            <p data-testid="shopping-cart-empty-message">Seu carrinho está vazio</p>
+          </div>)}
+        {products.map((product) => (
+          <div key={ product.id }>
+            <img src={ product.thumbnail } alt={ product.title } />
+            <h3 data-testid="shopping-cart-product-name">
+              {product.title}
+              {' '}
+              <span
+                style={ { color: 'red' } }
+                data-testid="shopping-cart-product-name"
+              >
+                {product.quantity}
+
+              </span>
+            </h3>
+            <p>{product.price}</p>
+          </div>
+        ))}
       </div>
     );
   }
 }
 
+ShoppingCart.propTypes = {
+  cartProduct: PropTypes.arrayOf(PropTypes.shape({
+    title: PropTypes.string,
+    price: PropTypes.number,
+  })).isRequired,
+};
 export default ShoppingCart;

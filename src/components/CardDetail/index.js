@@ -42,7 +42,7 @@ class CardDetail extends Component {
           </ListGroupItem>
         </ListGroup>
         <Card.Body>
-          <Button>Adicionar ao carrinho</Button>
+          <Button data-testid="shopping-cart-product-name">Adicionar ao carrinho</Button>
         </Card.Body>
       </Card>
     );
