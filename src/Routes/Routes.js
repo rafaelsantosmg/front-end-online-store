@@ -7,7 +7,8 @@ import ProductDetail from '../pages/ProductDetails';
 
 class Routes extends Component {
   render() {
-    const { handleClick, addProductCart, products, cartProduct } = this.props;
+    const { handleClick, addProductCart, products, cartProduct,
+      getProduct, productDetails } = this.props;
     return (
       <Switch>
         <Route
@@ -25,7 +26,15 @@ class Routes extends Component {
           path="/cart"
           render={ () => (<ShoppingCart cartProduct={ cartProduct } />) }
         />
-        <Route path="/details/:id" component={ ProductDetail } />
+        <Route
+          path="/details/:id"
+          render={ (props) => (<ProductDetail
+            getProduct={ getProduct }
+            productDetails={ productDetails }
+            addProductCart={ addProductCart }
+            { ...props }
+          />) }
+        />
       </Switch>
     );
   }

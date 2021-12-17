@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import Routes from './Routes/Routes';
-import { getProductsFromCategoryAndQuery } from './services/api';
+import { getProductsFromCategoryAndQuery, getProductsFromItem } from './services/api';
 import Header from './components/Header';
 
 import './App.css';
@@ -12,6 +12,7 @@ class App extends Component {
     this.state = {
       products: [],
       cartProduct: [],
+      productDetails: {},
     };
   }
 
@@ -64,16 +65,25 @@ class App extends Component {
     });
   };
 
+  getProduct = async (productId) => {
+    const response = await getProductsFromItem(productId);
+    this.setState({
+      productDetails: response,
+    });
+  }
+
   render() {
-    const { products, cartProduct } = this.state;
+    const { products, cartProduct, productDetails } = this.state;
     return (
       <BrowserRouter>
         <Header handleClick={ this.handleClick } products={ products } />
         <Routes
           handleClick={ this.handleClick }
+          getProduct={ this.getProduct }
           addProductCart={ this.addProductCart }
           products={ products }
           cartProduct={ cartProduct }
+          productDetails={ productDetails }
         />
       </BrowserRouter>
     );
