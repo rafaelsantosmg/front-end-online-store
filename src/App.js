@@ -15,29 +15,24 @@ class App extends Component {
     };
   }
 
-  filterProductWithQuantity = (cartProducts, filterProduct) => {
-    const changeProductQuantity = cartProducts
-      .find((product) => product.id === filterProduct.id);
-    changeProductQuantity.quantity = 10;
-    this.setState({
-      cartProduct: [changeProductQuantity],
-    });
+  filterProductWithQuantity = (idProduct) => {
+    const { products, cartProduct } = this.state;
+    const findProduct = products.find((product) => product.id === idProduct);
+    const index = cartProduct.indexOf(findProduct);
+    if (cartProduct.includes(findProduct)) cartProduct[index].quantity += 1;
+    else findProduct.quantity = 1;
+    const productsFilter = [...cartProduct, findProduct];
+    return productsFilter;
   };
 
   addProductCart = (idProduct) => {
-    const { products } = this.state;
-    const findProduct = products.find((product) => product.id === idProduct);
-    findProduct.quantity = 0;
-    this.setState((prevState) => (
-      {
-        cartProduct: [...prevState.cartProduct,
-          prevState.cartProduct.id === findProduct.id
-            ?  : findProduct],
-      }
-    ), () => {
-      // const { cartProduct } = this.state;
-      // this.filterProductWithQuantity(cartProduct, findProduct);
-    });
+    const products = this.filterProductWithQuantity(idProduct);
+    this.setState(() => ({
+      cartProduct: products.reduce((acc, product) => {
+        if (acc.includes(product)) return acc;
+        return acc.concat(product);
+      }, []),
+    }));
   };
 
   handleClick = async (category = '', query = '') => {
