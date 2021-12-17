@@ -3,25 +3,23 @@ import PropTypes from 'prop-types';
 import { Card, Button, ListGroup, ListGroupItem } from 'react-bootstrap';
 
 class CardDetail extends Component {
-  // constructor() {
-  //   super();
-  //   this.state = {
-  //     product: {},
-  //   };
-  // }
-
   componentDidMount() {
     const { productId, getProduct } = this.props;
     getProduct(productId);
   }
 
   render() {
-    const { addProductCart, productId, productDetails } = this.props;
+    const { addProductCart, productDetails } = this.props;
     return (
       <Card style={ { width: '20rem' } }>
         <Card.Img variant="top" src={ productDetails.thumbnail } />
         <Card.Body>
-          <Card.Title data-testid="product-detail-name">{productDetails.title}</Card.Title>
+          <Card.Title
+            data-testid="product-detail-name"
+          >
+            {productDetails.title}
+
+          </Card.Title>
         </Card.Body>
         <ListGroup className="list-group-flush">
           <ListGroupItem>Cras justo odio</ListGroupItem>
@@ -34,8 +32,8 @@ class CardDetail extends Component {
         </ListGroup>
         <Card.Body>
           <Button
-            data-testid="shopping-cart-product-name"
-            onClick={ () => addProductCart(productId) }
+            data-testid="product-detail-add-to-cart"
+            onClick={ () => addProductCart(productDetails) }
           >
             Adicionar ao carrinho
           </Button>
@@ -47,11 +45,18 @@ class CardDetail extends Component {
 
 CardDetail.propTypes = {
   addProductCart: PropTypes.func,
+  getProduct: PropTypes.func,
   productId: PropTypes.string,
+  productDetails: PropTypes.shape({
+    title: PropTypes.string,
+    price: PropTypes.number,
+    thumbnail: PropTypes.string,
+  }).isRequired,
 };
 
 CardDetail.defaultProps = {
   addProductCart: () => { },
+  getProduct: () => {},
   productId: '',
 };
 

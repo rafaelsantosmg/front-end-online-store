@@ -41,7 +41,7 @@ class ShoppingCart extends Component {
                 style={ { color: 'red' } }
                 data-testid="shopping-cart-product-quantity"
               >
-                {product.quantity}
+                {product.quantity ? product.quantity : 1}
 
               </span>
             </h3>

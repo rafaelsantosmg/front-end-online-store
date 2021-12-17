@@ -17,7 +17,6 @@ class Routes extends Component {
           render={ (props) => (<Home
             handleClick={ handleClick }
             addProductCart={ addProductCart }
-            cartProduct={ cartProduct }
             products={ products }
             { ...props }
           />) }
@@ -43,6 +42,7 @@ class Routes extends Component {
 Routes.propTypes = {
   handleClick: PropTypes.func,
   addProductCart: PropTypes.func,
+  getProduct: PropTypes.func,
   products: PropTypes.arrayOf(PropTypes.shape({
     title: PropTypes.string,
     price: PropTypes.number,
@@ -51,11 +51,17 @@ Routes.propTypes = {
     title: PropTypes.string,
     price: PropTypes.number,
   })),
+  productDetails: PropTypes.shape({
+    title: PropTypes.string,
+    price: PropTypes.number,
+    thumbnail: PropTypes.string,
+  }).isRequired,
 };
 
 Routes.defaultProps = {
   handleClick: () => {},
   addProductCart: () => {},
+  getProduct: () => {},
   cartProduct: [],
 };
 

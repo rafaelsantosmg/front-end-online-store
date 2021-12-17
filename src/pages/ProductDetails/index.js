@@ -27,15 +27,22 @@ class ProductDetail extends Component {
 
 ProductDetail.propTypes = {
   addProductCart: PropTypes.func,
+  getProduct: PropTypes.func,
   match: PropTypes.shape({
     params: PropTypes.shape({
       id: PropTypes.string,
     }),
   }).isRequired,
+  productDetails: PropTypes.shape({
+    title: PropTypes.string,
+    price: PropTypes.number,
+    thumbnail: PropTypes.string,
+  }).isRequired,
 };
 
 ProductDetail.defaultProps = {
   addProductCart: () => { },
+  getProduct: () => { },
 };
 
 export default ProductDetail;

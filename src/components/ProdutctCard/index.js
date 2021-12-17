@@ -6,26 +6,28 @@ import Button from 'react-bootstrap/Button';
 
 class ProdutctCard extends Component {
   render() {
-    const { title, price, thumbnail, idProduct, addProductCart } = this.props;
+    const { product, addProductCart } = this.props;
     return (
 
       <Card data-testid="product" style={ { width: '18rem' } }>
         <Link
-          to={ `/details/${idProduct} ` }
+          to={ {
+            pathname: `/details/${product.id} `,
+            product: { product } } }
           data-testid="product-detail-link"
         >
-          <Card.Img variant="top" src={ thumbnail } />
+          <Card.Img variant="top" src={ product.thumbnail } />
           <Card.Body>
-            <Card.Title>{ title }</Card.Title>
+            <Card.Title>{ product.title }</Card.Title>
             <Card.Text>
-              { price }
+              { product.price }
             </Card.Text>
           </Card.Body>
         </Link>
         <Button
           data-testid="product-add-to-cart"
           variant="primary"
-          onClick={ () => addProductCart(idProduct) }
+          onClick={ () => addProductCart(product) }
         >
           Adicionar ao Carrinho
         </Button>
@@ -39,7 +41,12 @@ ProdutctCard.propTypes = {
   title: PropTypes.string,
   price: PropTypes.number,
   thumbnail: PropTypes.string,
-  idProduct: PropTypes.string,
+  product: PropTypes.shape({
+    id: PropTypes.string,
+    title: PropTypes.string,
+    price: PropTypes.number,
+    thumbnail: PropTypes.string,
+  }).isRequired,
 };
 
 ProdutctCard.defaultProps = {
@@ -47,7 +54,6 @@ ProdutctCard.defaultProps = {
   title: '',
   price: 0,
   thumbnail: '',
-  idProduct: '',
 };
 
 export default ProdutctCard;
