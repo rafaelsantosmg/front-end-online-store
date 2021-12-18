@@ -13,7 +13,16 @@ class App extends Component {
       products: [],
       cartProduct: [],
       productDetails: {},
+      total: 0,
     };
+  }
+
+  sumCart = () => {
+    const { cartProduct } = this.state;
+    this.setState({
+      total: cartProduct
+        .reduce((acc, product) => (acc + (product.quantity * product.price)), 0),
+    });
   }
 
   filterProductWithQuantity = (idProduct) => {
@@ -72,11 +81,37 @@ class App extends Component {
     });
   }
 
+  increaseProductQuantity = (product) => {
+    const { cartProduct } = this.state;
+    const findProduct = cartProduct.indexOf(product);
+    cartProduct[findProduct].quantity += 1;
+    this.setState({
+      cartProduct,
+    }, () => {
+      this.sumCart();
+    });
+  }
+
+  decreaseProductQuantity = (product) => {
+    const { cartProduct } = this.state;
+    const findProduct = cartProduct.indexOf(product);
+    if (cartProduct[findProduct].quantity <= 0) cartProduct[findProduct].quantity = 0;
+    else cartProduct[findProduct].quantity -= 1;
+    this.setState({
+      cartProduct,
+    }, () => {
+      this.sumCart();
+    });
+  }
+
   render() {
-    const { products, cartProduct, productDetails } = this.state;
+    const { products, cartProduct, productDetails, total } = this.state;
     return (
       <BrowserRouter>
-        <Header handleClick={ this.handleClick } products={ products } />
+        <Header
+          handleClick={ this.handleClick }
+          products={ products }
+        />
         <Routes
           handleClick={ this.handleClick }
           getProduct={ this.getProduct }
@@ -84,6 +119,10 @@ class App extends Component {
           products={ products }
           cartProduct={ cartProduct }
           productDetails={ productDetails }
+          increaseProductQuantity={ this.increaseProductQuantity }
+          decreaseProductQuantity={ this.decreaseProductQuantity }
+          sumCart={ this.sumCart }
+          cartTotal={ total }
         />
       </BrowserRouter>
     );

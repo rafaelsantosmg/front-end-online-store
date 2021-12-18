@@ -23,6 +23,8 @@ class ShoppingCart extends Component {
 
   render() {
     const { products } = this.state;
+    const { increaseProductQuantity, decreaseProductQuantity,
+      cartTotal, sumCart } = this.props;
     return (
       <div>
         <h1>Carrinho de compras</h1>
@@ -32,7 +34,13 @@ class ShoppingCart extends Component {
             <i className="fas fa-box-open fa-9x" />
             <p data-testid="shopping-cart-empty-message">Seu carrinho está vazio</p>
           </div>)}
-        <CardCart products={ products } />
+        <CardCart
+          products={ products }
+          increaseProductQuantity={ increaseProductQuantity }
+          decreaseProductQuantity={ decreaseProductQuantity }
+          cartTotal={ cartTotal }
+          sumCart={ sumCart }
+        />
       </div>
     );
   }
@@ -43,5 +51,9 @@ ShoppingCart.propTypes = {
     title: PropTypes.string,
     price: PropTypes.number,
   })).isRequired,
+  increaseProductQuantity: PropTypes.func.isRequired,
+  decreaseProductQuantity: PropTypes.func.isRequired,
+  cartTotal: PropTypes.number.isRequired,
+  sumCart: PropTypes.func.isRequired,
 };
 export default ShoppingCart;

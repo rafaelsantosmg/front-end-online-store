@@ -1,45 +1,76 @@
 import React, { Component } from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import { Card, ListGroupItem, ListGroup, Button } from 'react-bootstrap';
-import { propTypes } from 'react-bootstrap/esm/Image';
 
 export default class CardCart extends Component {
-  render() {
-    const { products } = this.props;
-    return (
-      products.map((product) => (
-        <Card style={ { width: '20rem' } } key={ product.id }>
-          <Card.Img variant="top" src={ product.thumbnail } alt={ product.title } />
-          <Card.Body>
-            <Card.Title data-testid="shopping-cart-product-name">
-              { product.title }
+  componentDidMount() {
+    const { sumCart } = this.props;
+    sumCart();
+  }
 
-            </Card.Title>
-          </Card.Body>
-          <ListGroup className="list-group-flush">
-            <ListGroupItem>
-              { product.price.toLocaleString('pt-br',
-                { style: 'currency', currency: 'BRL' }) }
-            </ListGroupItem>
-            <ListGroupItem>
-              Quantidade
-              { ` ${product.quantity}` }
-            </ListGroupItem>
-          </ListGroup>
-          <Card.Body>
-            <Button>
-              +
-            </Button>
-            <Button>
-              -
-            </Button>
-          </Card.Body>
-        </Card>
-      ))
+  render() {
+    const { products, increaseProductQuantity,
+      decreaseProductQuantity, cartTotal } = this.props;
+    return (
+      <div>
+        <div>
+          { cartTotal !== 0 && (
+            <p>
+              {
+                cartTotal.toLocaleString('pt-br',
+                  { style: 'currency', currency: 'BRL' })
+              }
+            </p>
+          ) }
+        </div>
+        { products.map((product) => (
+          <Card style={ { width: '20rem' } } key={ product.id }>
+            <Card.Body>
+              <Card.Title data-testid="shopping-cart-product-name">
+                { product.title }
+              </Card.Title>
+            </Card.Body>
+            <Card.Img variant="top" src={ product.thumbnail } alt={ product.title } />
+            <ListGroup className="list-group-flush">
+              <ListGroupItem>
+                { (product.price * product.quantity).toLocaleString('pt-br',
+                  { style: 'currency', currency: 'BRL' }) }
+              </ListGroupItem>
+              <ListGroupItem
+                data-testid="shopping-cart-product-quantity"
+              >
+                Quantidade
+                { ` ${product.quantity}` }
+              </ListGroupItem>
+            </ListGroup>
+            <Card.Body>
+              <Button
+                data-testid="product-increase-quantity"
+                onClick={ () => increaseProductQuantity(product) }
+              >
+                +
+              </Button>
+              <Button
+                data-testid="product-decrease-quantity"
+                disabled={ product.quantity === 0 }
+                onClick={ () => decreaseProductQuantity(product) }
+              >
+                -
+              </Button>
+            </Card.Body>
+          </Card>
+        )) }
+      </div>
     );
   }
 }
 
 CardCart.propTypes = {
-  products: propTypes.thumbnail.isRequired,
+  products: PropTypes.arrayOf(PropTypes.shape({
+    title: PropTypes.string,
+  })).isRequired,
+  increaseProductQuantity: PropTypes.func.isRequired,
+  decreaseProductQuantity: PropTypes.func.isRequired,
+  cartTotal: PropTypes.number.isRequired,
+  sumCart: PropTypes.func.isRequired,
 };

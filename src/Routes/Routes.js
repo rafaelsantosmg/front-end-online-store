@@ -8,7 +8,8 @@ import ProductDetail from '../pages/ProductDetails';
 class Routes extends Component {
   render() {
     const { handleClick, addProductCart, products, cartProduct,
-      getProduct, productDetails } = this.props;
+      getProduct, productDetails,
+      increaseProductQuantity, decreaseProductQuantity, cartTotal, sumCart } = this.props;
     return (
       <Switch>
         <Route
@@ -25,6 +26,10 @@ class Routes extends Component {
           path="/cart"
           render={ () => (<ShoppingCart
             cartProduct={ cartProduct }
+            increaseProductQuantity={ increaseProductQuantity }
+            decreaseProductQuantity={ decreaseProductQuantity }
+            cartTotal={ cartTotal }
+            sumCart={ sumCart }
           />) }
         />
         <Route
@@ -58,6 +63,10 @@ Routes.propTypes = {
     price: PropTypes.number,
     thumbnail: PropTypes.string,
   }).isRequired,
+  increaseProductQuantity: PropTypes.func.isRequired,
+  decreaseProductQuantity: PropTypes.func.isRequired,
+  cartTotal: PropTypes.number.isRequired,
+  sumCart: PropTypes.func.isRequired,
 };
 
 Routes.defaultProps = {
