@@ -7,7 +7,8 @@ import ProductDetail from '../pages/ProductDetails';
 
 class Routes extends Component {
   render() {
-    const { handleClick, addProductCart, products, cartProduct } = this.props;
+    const { handleClick, addProductCart, products, cartProduct,
+      getProduct, productDetails } = this.props;
     return (
       <Switch>
         <Route
@@ -16,7 +17,6 @@ class Routes extends Component {
           render={ (props) => (<Home
             handleClick={ handleClick }
             addProductCart={ addProductCart }
-            cartProduct={ cartProduct }
             products={ products }
             { ...props }
           />) }
@@ -25,7 +25,15 @@ class Routes extends Component {
           path="/cart"
           render={ () => (<ShoppingCart cartProduct={ cartProduct } />) }
         />
-        <Route path="/details/:id" component={ ProductDetail } />
+        <Route
+          path="/details/:id"
+          render={ (props) => (<ProductDetail
+            getProduct={ getProduct }
+            productDetails={ productDetails }
+            addProductCart={ addProductCart }
+            { ...props }
+          />) }
+        />
       </Switch>
     );
   }
@@ -34,6 +42,7 @@ class Routes extends Component {
 Routes.propTypes = {
   handleClick: PropTypes.func,
   addProductCart: PropTypes.func,
+  getProduct: PropTypes.func,
   products: PropTypes.arrayOf(PropTypes.shape({
     title: PropTypes.string,
     price: PropTypes.number,
@@ -42,11 +51,17 @@ Routes.propTypes = {
     title: PropTypes.string,
     price: PropTypes.number,
   })),
+  productDetails: PropTypes.shape({
+    title: PropTypes.string,
+    price: PropTypes.number,
+    thumbnail: PropTypes.string,
+  }).isRequired,
 };
 
 Routes.defaultProps = {
   handleClick: () => {},
   addProductCart: () => {},
+  getProduct: () => {},
   cartProduct: [],
 };
 

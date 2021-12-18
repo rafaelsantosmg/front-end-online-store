@@ -5,13 +5,19 @@ import CardDetail from '../../components/CardDetail';
 
 class ProductDetail extends Component {
   render() {
-    const { match: { params: { id } } } = this.props;
+    const { addProductCart, getProduct, productDetails,
+      match: { params: { id } } } = this.props;
     return (
       <Container fluid>
         <Row>
           <Col>
             <h1>Details</h1>
-            <CardDetail productId={ id } />
+            <CardDetail
+              addProductCart={ addProductCart }
+              productId={ id }
+              getProduct={ getProduct }
+              productDetails={ productDetails }
+            />
           </Col>
         </Row>
       </Container>
@@ -20,11 +26,23 @@ class ProductDetail extends Component {
 }
 
 ProductDetail.propTypes = {
+  addProductCart: PropTypes.func,
+  getProduct: PropTypes.func,
   match: PropTypes.shape({
     params: PropTypes.shape({
       id: PropTypes.string,
     }),
   }).isRequired,
+  productDetails: PropTypes.shape({
+    title: PropTypes.string,
+    price: PropTypes.number,
+    thumbnail: PropTypes.string,
+  }).isRequired,
+};
+
+ProductDetail.defaultProps = {
+  addProductCart: () => { },
+  getProduct: () => { },
 };
 
 export default ProductDetail;
