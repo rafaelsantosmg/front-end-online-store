@@ -23,7 +23,9 @@ class Routes extends Component {
         />
         <Route
           path="/cart"
-          render={ () => (<ShoppingCart cartProduct={ cartProduct } />) }
+          render={ () => (<ShoppingCart
+            cartProduct={ cartProduct }
+          />) }
         />
         <Route
           path="/details/:id"
