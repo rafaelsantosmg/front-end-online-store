@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import CardCart from '../../components/CardCart';
 
 class ShoppingCart extends Component {
   constructor() {
@@ -31,23 +32,7 @@ class ShoppingCart extends Component {
             <i className="fas fa-box-open fa-9x" />
             <p data-testid="shopping-cart-empty-message">Seu carrinho está vazio</p>
           </div>)}
-        {products.map((product) => (
-          <div key={ product.id }>
-            <img src={ product.thumbnail } alt={ product.title } />
-            <h3 data-testid="shopping-cart-product-name">
-              {product.title}
-              {' '}
-              <span
-                style={ { color: 'red' } }
-                data-testid="shopping-cart-product-quantity"
-              >
-                {product.quantity ? product.quantity : 1}
-
-              </span>
-            </h3>
-            <p>{product.price}</p>
-          </div>
-        ))}
+        <CardCart products={ products } />
       </div>
     );
   }

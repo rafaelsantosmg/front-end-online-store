@@ -10,6 +10,7 @@ class CardDetail extends Component {
 
   render() {
     const { addProductCart, productDetails } = this.props;
+    const priceBRL = productDetails.price;
     return (
       <Card style={ { width: '20rem' } }>
         <Card.Img variant="top" src={ productDetails.thumbnail } />
@@ -17,7 +18,7 @@ class CardDetail extends Component {
           <Card.Title
             data-testid="product-detail-name"
           >
-            {productDetails.title}
+            { productDetails.title }
 
           </Card.Title>
         </Card.Body>
@@ -25,9 +26,7 @@ class CardDetail extends Component {
           <ListGroupItem>Cras justo odio</ListGroupItem>
           <ListGroupItem>Dapibus ac facilisis in</ListGroupItem>
           <ListGroupItem>
-            R$
-            {' '}
-            {productDetails.price}
+            { `R$ ${priceBRL}` }
           </ListGroupItem>
         </ListGroup>
         <Card.Body>
@@ -56,7 +55,7 @@ CardDetail.propTypes = {
 
 CardDetail.defaultProps = {
   addProductCart: () => { },
-  getProduct: () => {},
+  getProduct: () => { },
   productId: '',
 };
 

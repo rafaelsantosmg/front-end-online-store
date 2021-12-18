@@ -13,14 +13,16 @@ class ProdutctCard extends Component {
         <Link
           to={ {
             pathname: `/details/${product.id} `,
-            product: { product } } }
+            product: { product },
+          } }
           data-testid="product-detail-link"
         >
           <Card.Img variant="top" src={ product.thumbnail } />
           <Card.Body>
             <Card.Title>{ product.title }</Card.Title>
             <Card.Text>
-              { product.price }
+              { product.price.toLocaleString('pt-br',
+                { style: 'currency', currency: 'BRL' }) }
             </Card.Text>
           </Card.Body>
         </Link>
