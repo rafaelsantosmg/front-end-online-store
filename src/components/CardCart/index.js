@@ -9,7 +9,7 @@ export default class CardCart extends Component {
   }
 
   render() {
-    const { products, increaseProductQuantity,
+    const { cartProduct, increaseProductQuantity,
       decreaseProductQuantity, cartTotal } = this.props;
     return (
       <div>
@@ -23,7 +23,7 @@ export default class CardCart extends Component {
             </p>
           ) }
         </div>
-        { products.map((product) => (
+        { cartProduct.map((product) => (
           <Card style={ { width: '20rem' } } key={ product.id }>
             <Card.Body>
               <Card.Title data-testid="shopping-cart-product-name">
@@ -66,11 +66,12 @@ export default class CardCart extends Component {
 }
 
 CardCart.propTypes = {
-  products: PropTypes.arrayOf(PropTypes.shape({
+  cartProduct: PropTypes.arrayOf(PropTypes.shape({
     title: PropTypes.string,
   })).isRequired,
   increaseProductQuantity: PropTypes.func.isRequired,
   decreaseProductQuantity: PropTypes.func.isRequired,
   cartTotal: PropTypes.number.isRequired,
   sumCart: PropTypes.func.isRequired,
+
 };

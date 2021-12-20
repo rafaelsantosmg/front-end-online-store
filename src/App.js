@@ -17,11 +17,27 @@ class App extends Component {
     };
   }
 
+  componentDidMount() {
+    this.loadLocalStorage();
+  }
+
   sumCart = () => {
     const { cartProduct } = this.state;
     this.setState({
       total: cartProduct
         .reduce((acc, product) => (acc + (product.quantity * product.price)), 0),
+    });
+  }
+
+  saveLocalStorage = () => {
+    const { cartProduct } = this.state;
+    localStorage.setItem('cartProduct', JSON.stringify(cartProduct));
+  }
+
+  loadLocalStorage = () => {
+    const { cartProduct } = this.state;
+    this.setState({
+      cartProduct: JSON.parse(localStorage.getItem('cartProduct')) || cartProduct,
     });
   }
 
@@ -42,7 +58,9 @@ class App extends Component {
         if (acc.includes(product)) return acc;
         return acc.concat(product);
       }, []),
-    }));
+    }), () => {
+      this.saveLocalStorage();
+    });
   }
 
   // addProductCart = (product) => {
@@ -89,6 +107,7 @@ class App extends Component {
       cartProduct,
     }, () => {
       this.sumCart();
+      this.saveLocalStorage();
     });
   }
 
@@ -101,6 +120,7 @@ class App extends Component {
       cartProduct,
     }, () => {
       this.sumCart();
+      this.saveLocalStorage();
     });
   }
 
@@ -123,6 +143,7 @@ class App extends Component {
           decreaseProductQuantity={ this.decreaseProductQuantity }
           sumCart={ this.sumCart }
           cartTotal={ total }
+          saveLocalStorage={ this.saveLocalStorage }
         />
       </BrowserRouter>
     );
