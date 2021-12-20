@@ -58,7 +58,6 @@ class ProductDetail extends Component {
       const { addProductCart, getProduct, productDetails,
         match: { params: { id } } } = this.props;
       const { rating, userAvaliable, userComent, coments } = this.state;
-      console.log('state--->', coments);
       return (
         <Container>
           <Row>

@@ -4,6 +4,7 @@ import { Route, Switch } from 'react-router-dom';
 import Home from '../pages/Home';
 import ShoppingCart from '../pages/ShoppingCart';
 import ProductDetail from '../pages/ProductDetails';
+import Checkout from '../pages/Checkout';
 
 class Routes extends Component {
   render() {
@@ -40,6 +41,15 @@ class Routes extends Component {
             getProduct={ getProduct }
             productDetails={ productDetails }
             addProductCart={ addProductCart }
+            { ...props }
+          />) }
+        />
+        <Route
+          path="/checkout"
+          render={ (props) => (<Checkout
+            cartProduct={ cartProduct }
+            sumCart={ sumCart }
+            cartTotal={ cartTotal }
             { ...props }
           />) }
         />
