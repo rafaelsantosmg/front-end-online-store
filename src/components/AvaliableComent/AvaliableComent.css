@@ -1,0 +1,13 @@
+.avaliableComent-container {
+  border-bottom: 1px solid black;
+  margin: 15px 10px;
+  width: 97%;
+}
+
+.avaliableComent-content-user {
+  display: flex;
+}
+
+.avaliableComent-content-user h5 {
+  margin-right: 15px;
+}

@@ -1,0 +1,17 @@
+.product-detail-avaliable-content {
+  border: 1px solid black;
+  margin: 35px 0;
+  padding: 15px;
+  width: 90%;
+}
+
+.product-detail-user-coment {
+  border: 1px solid black;
+  margin: 25px 0;
+  padding: 15px;
+  width: 90%;
+}
+
+.product-details-title {
+  margin-top: 45px;
+}

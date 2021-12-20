@@ -13,10 +13,6 @@ class Cards extends Component {
           <ProdutctCard
             key={ product.id }
             addProductCart={ addProductCart }
-            // title={ product.title }
-            // price={ product.price }
-            // thumbnail={ product.thumbnail }
-            // idProduct={ product.id }
             product={ product }
           />
         )) }
