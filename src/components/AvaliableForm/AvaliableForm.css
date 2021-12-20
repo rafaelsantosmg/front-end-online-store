@@ -1,0 +1,13 @@
+.avaliable-form-container {
+  align-items: center;
+  display: flex;
+}
+
+.form-input-email {
+  margin-right: 10px;
+  width: 300px;
+}
+
+.form-input-textarea {
+  width: 36%;
+}
