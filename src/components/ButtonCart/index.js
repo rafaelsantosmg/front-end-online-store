@@ -9,7 +9,7 @@ class ButtonCart extends Component {
       <Link to="/cart" data-testid="shopping-cart-button">
         {' '}
         <i className="fas fa-shopping-cart fa-2x" />
-        <span>{ cartQuantity }</span>
+        <span data-testid="shopping-cart-size">{ cartQuantity }</span>
       </Link>
     );
   }
