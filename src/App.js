@@ -40,7 +40,7 @@ class App extends Component {
     const { cartProduct, cartQuantity } = this.state;
     this.setState({
       cartProduct: JSON.parse(localStorage.getItem('cartProduct')) || cartProduct,
-      cartQuantity: localStorage.getItem('cartQuantity') || cartQuantity,
+      cartQuantity: JSON.parse(localStorage.getItem('cartQuantity')) || cartQuantity,
     }, () => {
       this.sumCart();
     });
