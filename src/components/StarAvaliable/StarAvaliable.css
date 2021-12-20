@@ -1,8 +1,0 @@
-.star-container {
-  cursor: pointer;
-  margin-right: 10px;
-}
-
-.star-container input[type=radio]{
-  display: none;
-}
