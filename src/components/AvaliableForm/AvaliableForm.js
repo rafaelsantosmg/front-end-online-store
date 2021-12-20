@@ -44,6 +44,7 @@ class AvaliableForm extends Component {
             onChange={ onChange }
             name="userComent"
             value={ userComent }
+            data-testid="product-detail-evaluation"
           />
         </Form.Group>
         <Button onClick={ handleClickAvaliable }>Avaliar</Button>
