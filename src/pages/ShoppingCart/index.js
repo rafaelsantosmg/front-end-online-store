@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Container } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import CardCart from '../../components/CardCart';
 
 class ShoppingCart extends Component {
@@ -8,9 +9,9 @@ class ShoppingCart extends Component {
     const { cartProduct, increaseProductQuantity, decreaseProductQuantity,
       cartTotal, sumCart } = this.props;
     return (
-      <Container fluid>
+      <Container>
         <h1>Carrinho de compras</h1>
-
+        <Link to="/checkout" data-testid="checkout-products">Finalizar compra</Link>
         {cartProduct.length === 0 && (
           <div>
             <i className="fas fa-box-open fa-9x" />
