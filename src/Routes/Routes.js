@@ -9,7 +9,8 @@ class Routes extends Component {
   render() {
     const { handleClick, addProductCart, products, cartProduct,
       getProduct, productDetails,
-      increaseProductQuantity, decreaseProductQuantity, cartTotal, sumCart } = this.props;
+      increaseProductQuantity, decreaseProductQuantity,
+      cartTotal, sumCart, saveLocalStorage } = this.props;
     return (
       <Switch>
         <Route
@@ -30,6 +31,7 @@ class Routes extends Component {
             decreaseProductQuantity={ decreaseProductQuantity }
             cartTotal={ cartTotal }
             sumCart={ sumCart }
+            saveLocalStorage={ saveLocalStorage }
           />) }
         />
         <Route
@@ -67,6 +69,7 @@ Routes.propTypes = {
   decreaseProductQuantity: PropTypes.func.isRequired,
   cartTotal: PropTypes.number.isRequired,
   sumCart: PropTypes.func.isRequired,
+  saveLocalStorage: PropTypes.func.isRequired,
 };
 
 Routes.defaultProps = {
