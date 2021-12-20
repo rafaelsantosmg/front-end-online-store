@@ -9,7 +9,7 @@ import './styles.css';
 
 class Header extends Component {
   render() {
-    const { handleClick } = this.props;
+    const { handleClick, cartQuantity } = this.props;
     return (
       <header className="header">
         <figure className="header-logo-container">
@@ -20,7 +20,7 @@ class Header extends Component {
         <Search
           handleClick={ handleClick }
         />
-        <Cart />
+        <Cart cartQuantity={ cartQuantity } />
       </header>
     );
   }
@@ -28,6 +28,7 @@ class Header extends Component {
 
 Header.propTypes = {
   handleClick: PropTypes.func,
+  cartQuantity: PropTypes.number.isRequired,
 };
 
 Header.defaultProps = {

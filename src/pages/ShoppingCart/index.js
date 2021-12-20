@@ -8,7 +8,7 @@ class ShoppingCart extends Component {
     const { cartProduct, increaseProductQuantity, decreaseProductQuantity,
       cartTotal, sumCart } = this.props;
     return (
-      <Container fluid>
+      <Container>
         <h1>Carrinho de compras</h1>
 
         {cartProduct.length === 0 && (

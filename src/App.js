@@ -13,7 +13,8 @@ class App extends Component {
       products: [],
       cartProduct: [],
       productDetails: {},
-      total: 0,
+      cartTotalPrice: 0,
+      cartQuantity: 0,
     };
   }
 
@@ -24,22 +25,26 @@ class App extends Component {
   sumCart = () => {
     const { cartProduct } = this.state;
     this.setState({
-      total: cartProduct
+      cartTotalPrice: cartProduct
         .reduce((acc, product) => (acc + (product.quantity * product.price)), 0),
     });
-  }
+  };
 
-  saveLocalStorage = () => {
-    const { cartProduct } = this.state;
+  saveLocalStorage = (cartProduct) => {
     localStorage.setItem('cartProduct', JSON.stringify(cartProduct));
-  }
+    localStorage.setItem('cartQuantity', cartProduct
+      .reduce((acc, product) => (acc + product.quantity), 0));
+  };
 
   loadLocalStorage = () => {
-    const { cartProduct } = this.state;
+    const { cartProduct, cartQuantity } = this.state;
     this.setState({
       cartProduct: JSON.parse(localStorage.getItem('cartProduct')) || cartProduct,
+      cartQuantity: localStorage.getItem('cartQuantity') || cartQuantity,
+    }, () => {
+      this.sumCart();
     });
-  }
+  };
 
   filterProductWithQuantity = (idProduct) => {
     const { products, cartProduct } = this.state;
@@ -59,13 +64,20 @@ class App extends Component {
         return acc.concat(product);
       }, []),
     }), () => {
-      this.saveLocalStorage();
+      this.updateState();
     });
-  }
+  };
+
+  changeCartQuantity = (cartProduct) => {
+    this.setState({
+      cartQuantity: cartProduct
+        .reduce((acc, product) => (acc + product.quantity), 0),
+    });
+  };
 
   // addProductCart = (product) => {
   //   const { cartProduct } = this.state;
-  //   let sameProduct = false;
+  //   let sameProduct =total false;
   //   cartProduct.forEach((prod) => {
   //     if (prod.id === product.id) {
   //       if (product.quantity) {
@@ -97,7 +109,14 @@ class App extends Component {
     this.setState({
       productDetails: response,
     });
-  }
+  };
+
+  updateState = () => {
+    const { cartProduct } = this.state;
+    this.sumCart();
+    this.changeCartQuantity(cartProduct);
+    this.saveLocalStorage(cartProduct);
+  };
 
   increaseProductQuantity = (product) => {
     const { cartProduct } = this.state;
@@ -106,10 +125,9 @@ class App extends Component {
     this.setState({
       cartProduct,
     }, () => {
-      this.sumCart();
-      this.saveLocalStorage();
+      this.updateState();
     });
-  }
+  };
 
   decreaseProductQuantity = (product) => {
     const { cartProduct } = this.state;
@@ -117,20 +135,21 @@ class App extends Component {
     if (cartProduct[findProduct].quantity <= 0) cartProduct[findProduct].quantity = 0;
     else cartProduct[findProduct].quantity -= 1;
     this.setState({
-      cartProduct,
+      cartProduct: cartProduct.filter((filterProduct) => filterProduct.quantity !== 0),
     }, () => {
-      this.sumCart();
-      this.saveLocalStorage();
+      this.updateState();
     });
-  }
+  };
 
   render() {
-    const { products, cartProduct, productDetails, total } = this.state;
+    const { products, cartProduct, productDetails,
+      cartTotalPrice, cartQuantity } = this.state;
     return (
       <BrowserRouter>
         <Header
           handleClick={ this.handleClick }
           products={ products }
+          cartQuantity={ cartQuantity }
         />
         <Routes
           handleClick={ this.handleClick }
@@ -142,7 +161,7 @@ class App extends Component {
           increaseProductQuantity={ this.increaseProductQuantity }
           decreaseProductQuantity={ this.decreaseProductQuantity }
           sumCart={ this.sumCart }
-          cartTotal={ total }
+          cartTotal={ cartTotalPrice }
           saveLocalStorage={ this.saveLocalStorage }
         />
       </BrowserRouter>
