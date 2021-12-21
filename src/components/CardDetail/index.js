@@ -9,7 +9,7 @@ class CardDetail extends Component {
   }
 
   render() {
-    const { addProductCart, productDetails } = this.props;
+    const { addProductCart, productDetails, isDisabled } = this.props;
     const priceBRL = productDetails.price;
     return (
       <Card style={ { width: '20rem' } }>
@@ -33,6 +33,7 @@ class CardDetail extends Component {
           <Button
             data-testid="product-detail-add-to-cart"
             onClick={ () => addProductCart(productDetails) }
+            disabled={ isDisabled }
           >
             Adicionar ao carrinho
           </Button>
@@ -51,7 +52,9 @@ CardDetail.propTypes = {
     title: PropTypes.string,
     price: PropTypes.number,
     thumbnail: PropTypes.string,
+    buttonDisabled: PropTypes.bool,
   }).isRequired,
+  isDisabled: PropTypes.bool.isRequired,
 };
 
 CardDetail.defaultProps = {

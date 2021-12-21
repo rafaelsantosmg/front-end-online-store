@@ -15,6 +15,7 @@ class App extends Component {
       productDetails: {},
       cartTotalPrice: 0,
       cartQuantity: 0,
+      isDisabled: false,
     };
   }
 
@@ -46,23 +47,25 @@ class App extends Component {
     });
   };
 
-  filterProductWithQuantity = (idProduct) => {
+  filterProductWithQuantity = (productAdd) => {
     const { products, cartProduct } = this.state;
-    const findProduct = products.find((product) => product.id === idProduct);
+    const findProduct = products.find((product) => product.id === productAdd.id);
     const index = cartProduct.indexOf(findProduct);
     findProduct.buttonDisabled = false;
     if (cartProduct.includes(findProduct)) cartProduct[index].quantity += 1;
     else findProduct.quantity = 1;
+    if (findProduct.quantity === productAdd.available_quantity) {
+      findProduct.buttonDisabled = true;
+      this.setState({ isDisabled: true });
+    }
+    this.setState({ productDetails: findProduct });
     const productsFilter = [...cartProduct, findProduct];
+    console.log(productsFilter);
     return productsFilter;
   };
 
   addProductCart = (productAdd) => {
-    const products = this.filterProductWithQuantity(productAdd.id);
-    const findProduct = products.indexOf(productAdd);
-    if (products[findProduct].quantity === productAdd.available_quantity) {
-      products[findProduct].buttonDisabled = true;
-    }
+    const products = this.filterProductWithQuantity(productAdd);
     this.setState(() => ({
       cartProduct: products.reduce((acc, product) => {
         if (acc.includes(product)) return acc;
@@ -79,6 +82,10 @@ class App extends Component {
         .reduce((acc, product) => (acc + product.quantity), 0),
     });
   };
+
+  changeButtonDisabled = () => {
+    this.setState({ isDisabled: false });
+  }
 
   // addProductCart = (product) => {
   //   const { cartProduct } = this.state;
@@ -154,7 +161,7 @@ class App extends Component {
 
   render() {
     const { products, cartProduct, productDetails,
-      cartTotalPrice, cartQuantity } = this.state;
+      cartTotalPrice, cartQuantity, isDisabled } = this.state;
     return (
       <BrowserRouter>
         <Header
@@ -174,6 +181,8 @@ class App extends Component {
           sumCart={ this.sumCart }
           cartTotal={ cartTotalPrice }
           saveLocalStorage={ this.saveLocalStorage }
+          isDisabled={ isDisabled }
+          changeButtonDisabled={ this.changeButtonDisabled }
         />
       </BrowserRouter>
     );

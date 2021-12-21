@@ -22,6 +22,11 @@ class ProductDetail extends Component {
     this.getLocalStorage();
   }
 
+  componentWillUnmount() {
+    const { changeButtonDisabled } = this.props;
+    changeButtonDisabled();
+  }
+
   getLocalStorage= () => {
     const getLocalStorageComents = JSON.parse(localStorage.getItem('coments')) || [];
 
@@ -55,7 +60,7 @@ class ProductDetail extends Component {
     }
 
     render() {
-      const { addProductCart, getProduct, productDetails,
+      const { addProductCart, getProduct, productDetails, isDisabled,
         match: { params: { id } } } = this.props;
       const { rating, userAvaliable, userComent, coments } = this.state;
       return (
@@ -68,6 +73,7 @@ class ProductDetail extends Component {
                 productId={ id }
                 getProduct={ getProduct }
                 productDetails={ productDetails }
+                isDisabled={ isDisabled }
               />
             </Col>
           </Row>
@@ -109,6 +115,8 @@ ProductDetail.propTypes = {
     price: PropTypes.number,
     thumbnail: PropTypes.string,
   }).isRequired,
+  isDisabled: PropTypes.bool.isRequired,
+  changeButtonDisabled: PropTypes.func.isRequired,
 };
 
 ProductDetail.defaultProps = {
