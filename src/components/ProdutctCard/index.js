@@ -5,8 +5,28 @@ import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 
 class ProdutctCard extends Component {
+  constructor() {
+    super();
+    this.state = {
+      freeShipping: false,
+    };
+  }
+
+  componentDidMount() {
+    this.freeShippingProduct();
+  }
+
+  freeShippingProduct = () => {
+    const { product: { shipping } } = this.props;
+    this.setState(({
+      freeShipping: shipping.free_shipping,
+    }));
+  }
+
   render() {
     const { product, addProductCart } = this.props;
+    const { freeShipping } = this.state;
+
     return (
 
       <Card data-testid="product" style={ { width: '18rem' } }>
@@ -23,6 +43,16 @@ class ProdutctCard extends Component {
             <Card.Text>
               { product.price.toLocaleString('pt-br',
                 { style: 'currency', currency: 'BRL' }) }
+            </Card.Text>
+            <Card.Text>
+              {freeShipping && (
+                <span
+                  style={ { color: 'red', fontSize: '18px' } }
+                  data-testid="free-shipping"
+                >
+                  Frete Grátis
+
+                </span>)}
             </Card.Text>
           </Card.Body>
         </Link>
@@ -48,6 +78,9 @@ ProdutctCard.propTypes = {
     title: PropTypes.string,
     price: PropTypes.number,
     thumbnail: PropTypes.string,
+    shipping: PropTypes.shape({
+      free_shipping: PropTypes.bool,
+    }),
   }).isRequired,
 };
 
