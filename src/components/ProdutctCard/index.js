@@ -5,22 +5,6 @@ import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 
 class ProdutctCard extends Component {
-  // constructor() {
-  //   super();
-  //   this.state = {
-  //     buttonDisabled: false,
-  //   };
-  // }
-
-  // componentDidMount() {
-  //   this.changeButtonDisabled();
-  // }
-
-  // changeButtonDisabled = () => {
-  //   const { isDisabled } = this.props;
-  //   this.setState({ buttonDisabled: isDisabled });
-  // }
-
   render() {
     const { product, addProductCart } = this.props;
     return (

@@ -8,7 +8,7 @@ import Categories from '../../components/Categories';
 
 class Home extends Component {
   render() {
-    const { handleClick, addProductCart, products, isDisabled } = this.props;
+    const { handleClick, addProductCart, products } = this.props;
     return (
       <Container fluid>
         <Row>
@@ -25,7 +25,6 @@ class Home extends Component {
             <Cards
               products={ products }
               addProductCart={ addProductCart }
-              isDisabled={ isDisabled }
             />
           </Col>
         </Row>
@@ -41,7 +40,6 @@ Home.propTypes = {
     title: PropTypes.string,
     price: PropTypes.number,
   })).isRequired,
-  isDisabled: PropTypes.bool.isRequired,
 };
 
 Home.defaultProps = {

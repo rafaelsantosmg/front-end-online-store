@@ -15,7 +15,6 @@ class App extends Component {
       productDetails: {},
       cartTotalPrice: 0,
       cartQuantity: 0,
-      isDisabled: false,
     };
   }
 
@@ -155,7 +154,7 @@ class App extends Component {
 
   render() {
     const { products, cartProduct, productDetails,
-      cartTotalPrice, cartQuantity, isDisabled } = this.state;
+      cartTotalPrice, cartQuantity } = this.state;
     return (
       <BrowserRouter>
         <Header
@@ -175,7 +174,6 @@ class App extends Component {
           sumCart={ this.sumCart }
           cartTotal={ cartTotalPrice }
           saveLocalStorage={ this.saveLocalStorage }
-          isDisabled={ isDisabled }
         />
       </BrowserRouter>
     );
