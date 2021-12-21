@@ -83,6 +83,10 @@ class App extends Component {
     });
   };
 
+  changeButtonDisabled = () => {
+    this.setState({ isDisabled: false });
+  }
+
   // addProductCart = (product) => {
   //   const { cartProduct } = this.state;
   //   let sameProduct =total false;
@@ -178,6 +182,7 @@ class App extends Component {
           cartTotal={ cartTotalPrice }
           saveLocalStorage={ this.saveLocalStorage }
           isDisabled={ isDisabled }
+          changeButtonDisabled={ this.changeButtonDisabled }
         />
       </BrowserRouter>
     );

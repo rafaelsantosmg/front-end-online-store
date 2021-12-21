@@ -22,6 +22,11 @@ class ProductDetail extends Component {
     this.getLocalStorage();
   }
 
+  componentWillUnmount() {
+    const { changeButtonDisabled } = this.props;
+    changeButtonDisabled();
+  }
+
   getLocalStorage= () => {
     const getLocalStorageComents = JSON.parse(localStorage.getItem('coments')) || [];
 
@@ -111,6 +116,7 @@ ProductDetail.propTypes = {
     thumbnail: PropTypes.string,
   }).isRequired,
   isDisabled: PropTypes.bool.isRequired,
+  changeButtonDisabled: PropTypes.func.isRequired,
 };
 
 ProductDetail.defaultProps = {
