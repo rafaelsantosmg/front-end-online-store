@@ -55,7 +55,7 @@ class ProductDetail extends Component {
     }
 
     render() {
-      const { addProductCart, getProduct, productDetails,
+      const { addProductCart, getProduct, productDetails, isDisabled,
         match: { params: { id } } } = this.props;
       const { rating, userAvaliable, userComent, coments } = this.state;
       return (
@@ -68,6 +68,7 @@ class ProductDetail extends Component {
                 productId={ id }
                 getProduct={ getProduct }
                 productDetails={ productDetails }
+                isDisabled={ isDisabled }
               />
             </Col>
           </Row>
@@ -109,6 +110,7 @@ ProductDetail.propTypes = {
     price: PropTypes.number,
     thumbnail: PropTypes.string,
   }).isRequired,
+  isDisabled: PropTypes.bool.isRequired,
 };
 
 ProductDetail.defaultProps = {
