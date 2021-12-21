@@ -60,6 +60,7 @@ class ProdutctCard extends Component {
           data-testid="product-add-to-cart"
           variant="primary"
           onClick={ () => addProductCart(product) }
+          disabled={ product.buttonDisabled }
         >
           Adicionar ao Carrinho
         </Button>
@@ -78,6 +79,7 @@ ProdutctCard.propTypes = {
     title: PropTypes.string,
     price: PropTypes.number,
     thumbnail: PropTypes.string,
+    buttonDisabled: PropTypes.bool,
     shipping: PropTypes.shape({
       free_shipping: PropTypes.bool,
     }),

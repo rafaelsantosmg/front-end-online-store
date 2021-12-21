@@ -23,7 +23,7 @@ class CardDetail extends Component {
           </Card.Title>
         </Card.Body>
         <ListGroup className="list-group-flush">
-          <ListGroupItem>Cras justo odio</ListGroupItem>
+          <ListGroupItem>{ productDetails.id }</ListGroupItem>
           <ListGroupItem>Dapibus ac facilisis in</ListGroupItem>
           <ListGroupItem>
             { `R$ ${priceBRL}` }
@@ -47,6 +47,7 @@ CardDetail.propTypes = {
   getProduct: PropTypes.func,
   productId: PropTypes.string,
   productDetails: PropTypes.shape({
+    id: PropTypes.string,
     title: PropTypes.string,
     price: PropTypes.number,
     thumbnail: PropTypes.string,

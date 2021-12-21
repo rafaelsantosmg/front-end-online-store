@@ -50,6 +50,7 @@ class App extends Component {
     const { products, cartProduct } = this.state;
     const findProduct = products.find((product) => product.id === idProduct);
     const index = cartProduct.indexOf(findProduct);
+    findProduct.buttonDisabled = false;
     if (cartProduct.includes(findProduct)) cartProduct[index].quantity += 1;
     else findProduct.quantity = 1;
     const productsFilter = [...cartProduct, findProduct];
@@ -58,6 +59,10 @@ class App extends Component {
 
   addProductCart = (productAdd) => {
     const products = this.filterProductWithQuantity(productAdd.id);
+    const findProduct = products.indexOf(productAdd);
+    if (products[findProduct].quantity === productAdd.available_quantity) {
+      products[findProduct].buttonDisabled = true;
+    }
     this.setState(() => ({
       cartProduct: products.reduce((acc, product) => {
         if (acc.includes(product)) return acc;
@@ -122,6 +127,9 @@ class App extends Component {
     const { cartProduct } = this.state;
     const findProduct = cartProduct.indexOf(product);
     cartProduct[findProduct].quantity += 1;
+    if (product.available_quantity === cartProduct[findProduct].quantity) {
+      cartProduct[findProduct].buttonDisabled = true;
+    }
     this.setState({
       cartProduct,
     }, () => {
@@ -133,7 +141,10 @@ class App extends Component {
     const { cartProduct } = this.state;
     const findProduct = cartProduct.indexOf(product);
     if (cartProduct[findProduct].quantity <= 0) cartProduct[findProduct].quantity = 0;
-    else cartProduct[findProduct].quantity -= 1;
+    else {
+      cartProduct[findProduct].quantity -= 1;
+      cartProduct[findProduct].buttonDisabled = false;
+    }
     this.setState({
       cartProduct: cartProduct.filter((filterProduct) => filterProduct.quantity !== 0),
     }, () => {
