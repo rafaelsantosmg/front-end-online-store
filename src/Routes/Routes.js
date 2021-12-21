@@ -11,7 +11,7 @@ class Routes extends Component {
     const { handleClick, addProductCart, products, cartProduct,
       getProduct, productDetails,
       increaseProductQuantity, decreaseProductQuantity,
-      cartTotal, sumCart, saveLocalStorage } = this.props;
+      cartTotal, sumCart, saveLocalStorage, isDisabled } = this.props;
     return (
       <Switch>
         <Route
@@ -21,6 +21,7 @@ class Routes extends Component {
             handleClick={ handleClick }
             addProductCart={ addProductCart }
             products={ products }
+            isDisabled={ isDisabled }
             { ...props }
           />) }
         />
@@ -33,6 +34,7 @@ class Routes extends Component {
             cartTotal={ cartTotal }
             sumCart={ sumCart }
             saveLocalStorage={ saveLocalStorage }
+            isDisabled={ isDisabled }
           />) }
         />
         <Route
@@ -80,6 +82,7 @@ Routes.propTypes = {
   cartTotal: PropTypes.number.isRequired,
   sumCart: PropTypes.func.isRequired,
   saveLocalStorage: PropTypes.func.isRequired,
+  isDisabled: PropTypes.bool.isRequired,
 };
 
 Routes.defaultProps = {

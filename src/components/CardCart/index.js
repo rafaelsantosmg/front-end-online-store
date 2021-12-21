@@ -47,6 +47,7 @@ export default class CardCart extends Component {
               <Button
                 data-testid="product-increase-quantity"
                 onClick={ () => increaseProductQuantity(product) }
+                disabled={ product.buttonDisabled }
               >
                 +
               </Button>
@@ -73,5 +74,4 @@ CardCart.propTypes = {
   decreaseProductQuantity: PropTypes.func.isRequired,
   cartTotal: PropTypes.number.isRequired,
   sumCart: PropTypes.func.isRequired,
-
 };

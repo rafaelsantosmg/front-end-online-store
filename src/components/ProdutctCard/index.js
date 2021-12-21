@@ -5,6 +5,22 @@ import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 
 class ProdutctCard extends Component {
+  // constructor() {
+  //   super();
+  //   this.state = {
+  //     buttonDisabled: false,
+  //   };
+  // }
+
+  // componentDidMount() {
+  //   this.changeButtonDisabled();
+  // }
+
+  // changeButtonDisabled = () => {
+  //   const { isDisabled } = this.props;
+  //   this.setState({ buttonDisabled: isDisabled });
+  // }
+
   render() {
     const { product, addProductCart } = this.props;
     return (
@@ -30,6 +46,7 @@ class ProdutctCard extends Component {
           data-testid="product-add-to-cart"
           variant="primary"
           onClick={ () => addProductCart(product) }
+          disabled={ product.buttonDisabled }
         >
           Adicionar ao Carrinho
         </Button>
@@ -48,6 +65,7 @@ ProdutctCard.propTypes = {
     title: PropTypes.string,
     price: PropTypes.number,
     thumbnail: PropTypes.string,
+    buttonDisabled: PropTypes.bool,
   }).isRequired,
 };
 

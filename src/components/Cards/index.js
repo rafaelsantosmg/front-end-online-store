@@ -6,7 +6,7 @@ import './Cards.css';
 
 class Cards extends Component {
   render() {
-    const { products, addProductCart } = this.props;
+    const { products, addProductCart, isDisabled } = this.props;
     return (
       <div className="cards-contaniner">
         { products.map((product) => (
@@ -14,6 +14,7 @@ class Cards extends Component {
             key={ product.id }
             addProductCart={ addProductCart }
             product={ product }
+            isDisabled={ isDisabled }
           />
         )) }
       </div>
@@ -28,6 +29,7 @@ Cards.propTypes = {
     title: PropTypes.string,
     price: PropTypes.number,
   })).isRequired,
+  isDisabled: PropTypes.bool.isRequired,
 };
 
 Cards.defaultProps = {

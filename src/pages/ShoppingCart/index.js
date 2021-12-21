@@ -7,7 +7,7 @@ import CardCart from '../../components/CardCart';
 class ShoppingCart extends Component {
   render() {
     const { cartProduct, increaseProductQuantity, decreaseProductQuantity,
-      cartTotal, sumCart } = this.props;
+      cartTotal, sumCart, isDisabled } = this.props;
     return (
       <Container>
         <h1>Carrinho de compras</h1>
@@ -23,6 +23,7 @@ class ShoppingCart extends Component {
           decreaseProductQuantity={ decreaseProductQuantity }
           cartTotal={ cartTotal }
           sumCart={ sumCart }
+          isDisabled={ isDisabled }
         />
       </Container>
     );
@@ -38,6 +39,7 @@ ShoppingCart.propTypes = {
   decreaseProductQuantity: PropTypes.func.isRequired,
   cartTotal: PropTypes.number.isRequired,
   sumCart: PropTypes.func.isRequired,
+  isDisabled: PropTypes.bool.isRequired,
 };
 
 export default ShoppingCart;
