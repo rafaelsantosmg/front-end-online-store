@@ -10,7 +10,7 @@ class Home extends Component {
   render() {
     const { handleClick, addProductCart, products } = this.props;
     return (
-      <Container fluid>
+      <Container fluid style={ { padding: 0 } }>
         <Row>
           <Col xs={ 6 } md={ 2 }>
             <Categories handleClick={ handleClick } />
