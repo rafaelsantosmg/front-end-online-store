@@ -45,6 +45,16 @@ class ProdutctCard extends Component {
                 { style: 'currency', currency: 'BRL' }) }
             </Card.Text>
             <Card.Text>
+              Quantidade no Carrinho
+              {' '}
+              { product.quantity }
+            </Card.Text>
+            <Card.Text>
+              Estoque
+              {' '}
+              { product.available_quantity }
+            </Card.Text>
+            <Card.Text>
               {freeShipping && (
                 <span
                   style={ { color: 'red', fontSize: '18px' } }
@@ -60,7 +70,7 @@ class ProdutctCard extends Component {
           data-testid="product-add-to-cart"
           variant="primary"
           onClick={ () => addProductCart(product) }
-          disabled={ product.buttonDisabled }
+          disabled={ product.quantity === product.available_quantity }
         >
           Adicionar ao Carrinho
         </Button>

@@ -47,33 +47,48 @@ class App extends Component {
     });
   };
 
-  filterProductWithQuantity = (productAdd) => {
-    const { products, cartProduct } = this.state;
-    const findProduct = products.find((product) => product.id === productAdd.id);
-    const index = cartProduct.indexOf(findProduct);
-    findProduct.buttonDisabled = false;
-    if (cartProduct.includes(findProduct)) cartProduct[index].quantity += 1;
-    else findProduct.quantity = 1;
-    if (findProduct.quantity === productAdd.available_quantity) {
-      findProduct.buttonDisabled = true;
-      this.setState({ isDisabled: true });
-    }
-    this.setState({ productDetails: findProduct });
-    const productsFilter = [...cartProduct, findProduct];
-    console.log(productsFilter);
-    return productsFilter;
-  };
+  // filterProductWithQuantity = (productAdd) => {
+  //   const { products, cartProduct } = this.state;
+  //   const findProduct = products.find((product) => product.id === productAdd.id);
+  //   const index = cartProduct.indexOf(findProduct);
+  //   console.log(findProduct, index);
+  //   findProduct.buttonDisabled = false;
+  //   if (cartProduct.includes(findProduct)) {
+  //     cartProduct[index].quantity += 1;
+  //     if (findProduct.quantity === productAdd.available_quantity) {
+  //       findProduct.buttonDisabled = true;
+  //       this.setState({ isDisabled: true });
+  //     }
+  //   } else findProduct.quantity = 1;
+  //   this.setState({ productDetails: findProduct });
+  //   const productsFilter = [...cartProduct, findProduct];
+  //   return productsFilter;
+  // };
+
+  // addProductCart = (productAdd) => {
+  //   const products = this.filterProductWithQuantity(productAdd);
+  //   this.setState(() => ({
+  //     cartProduct: products.reduce((acc, product) => {
+  //       if (acc.includes(product)) return acc;
+  //       return acc.concat(product);
+  //     }, []),
+  //   }), () => {
+  //     this.updateState();
+  //   });
+  // };
 
   addProductCart = (productAdd) => {
-    const products = this.filterProductWithQuantity(productAdd);
-    this.setState(() => ({
-      cartProduct: products.reduce((acc, product) => {
-        if (acc.includes(product)) return acc;
-        return acc.concat(product);
-      }, []),
-    }), () => {
-      this.updateState();
-    });
+    const { cartProduct } = this.state;
+    if (!cartProduct.includes(productAdd)) {
+      productAdd.quantity = 1;
+      this.setState((prevState) => ({
+        cartProduct: [...prevState.cartProduct, productAdd],
+      }));
+    } else {
+      const index = cartProduct.indexOf(productAdd);
+      cartProduct[index].quantity += 1;
+    }
+    this.updateState();
   };
 
   changeCartQuantity = (cartProduct) => {
@@ -85,11 +100,11 @@ class App extends Component {
 
   changeButtonDisabled = () => {
     this.setState({ isDisabled: false });
-  }
+  };
 
   // addProductCart = (product) => {
   //   const { cartProduct } = this.state;
-  //   let sameProduct =total false;
+  //   let sameProduct = false;
   //   cartProduct.forEach((prod) => {
   //     if (prod.id === product.id) {
   //       if (product.quantity) {
@@ -110,9 +125,16 @@ class App extends Component {
   // };
 
   handleClick = async (category = '', query = '') => {
+    const { cartProduct } = this.state;
     const response = await getProductsFromCategoryAndQuery(category, query);
+    cartProduct.forEach((product) => {
+      response.forEach((responseApi) => {
+        if (responseApi.id === product.id) responseApi.quantity = product.quantity;
+        else responseApi.quantity = 0;
+      });
+    });
     this.setState({
-      products: response.results,
+      products: response,
     });
   };
 
