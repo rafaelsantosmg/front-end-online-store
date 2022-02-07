@@ -2,6 +2,8 @@
 
 ## Desenvolvido por Rafael Santos e Emerson Moreira
 
+![Prévia do Projeto](preview.png)
+
 Este projeto foi desenvolvido usando os conhecimentos adquiridos no curso de desenvolvimento web da Trybe, projeto esse inspirado no site de compras Mercado Livre, utilizando a API do mercado libre.
 
 Trabalhamos na construção utilizando as ferramentas, React, Bootstrap, HTML, CSS, JavaScript, Trelo para fazer a parte de organização das tarefas seguindo a metodologia ágil do kanban e utilizamos a ferramenta de versionamento GIT em conjunto com GITHUB.
