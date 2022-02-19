@@ -1,5 +1,3 @@
 .category {
-  display: flex;
-  flex-direction: column;
-  width: 250px;
+  width: 100%;
 }

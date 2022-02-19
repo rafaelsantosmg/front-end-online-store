@@ -1,6 +1,9 @@
 .cards-contaniner {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    width: 100%;
+  display: flex;
+  flex-flow: row wrap;
+  gap: 15px;
+  justify-content: center;
+  margin: 0 auto;
+  padding-top: 10px;
+  width: 80%;
 }
