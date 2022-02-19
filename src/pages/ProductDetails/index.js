@@ -77,17 +77,19 @@ class ProductDetail extends Component {
               />
             </Col>
           </Row>
-          <div className="product-detail-avaliable-content">
-            <h1>Avaliações</h1>
-            <AvaliableForm
-              onStarClick={ this.onStarClick }
-              rating={ rating }
-              userAvaliable={ userAvaliable }
-              userComent={ userComent }
-              onChange={ this.onChange }
-              handleClickAvaliable={ this.handleClickAvaliable }
-            />
-          </div>
+          <Row className="product-detail-avaliable-content">
+            <Col>
+              <h1>Avaliações</h1>
+              <AvaliableForm
+                onStarClick={ this.onStarClick }
+                rating={ rating }
+                userAvaliable={ userAvaliable }
+                userComent={ userComent }
+                onChange={ this.onChange }
+                handleClickAvaliable={ this.handleClickAvaliable }
+              />
+            </Col>
+          </Row>
           {coments.length > 0 ? (
             <div className="product-detail-user-coment">
               <AvaliableComent
