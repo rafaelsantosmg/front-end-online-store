@@ -60,7 +60,6 @@ class App extends Component {
     }
     this.setState({ productDetails: findProduct });
     const productsFilter = [...cartProduct, findProduct];
-    console.log(productsFilter);
     return productsFilter;
   };
 
@@ -86,28 +85,6 @@ class App extends Component {
   changeButtonDisabled = () => {
     this.setState({ isDisabled: false });
   }
-
-  // addProductCart = (product) => {
-  //   const { cartProduct } = this.state;
-  //   let sameProduct =total false;
-  //   cartProduct.forEach((prod) => {
-  //     if (prod.id === product.id) {
-  //       if (product.quantity) {
-  //         product.quantity += 1;
-  //       } else {
-  //         product.quantity = 2;
-  //       }
-  //       sameProduct = true;
-  //     }
-  //   });
-  //   if (!sameProduct) {
-  //     this.setState((prevState) => ({
-  //       cartProduct: [...prevState.cartProduct,
-  //         product],
-  //     }
-  //     ));
-  //   }
-  // };
 
   handleClick = async (category = '', query = '') => {
     const response = await getProductsFromCategoryAndQuery(category, query);
