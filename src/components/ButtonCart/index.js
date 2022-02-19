@@ -6,10 +6,13 @@ class ButtonCart extends Component {
   render() {
     const { cartQuantity } = this.props;
     return (
-      <Link to="/cart" data-testid="shopping-cart-button">
+      <Link
+        to="/cart"
+        style={ { textDecoration: 'none' } }
+      >
         {' '}
-        <i className="fas fa-shopping-cart fa-2x" />
-        <span data-testid="shopping-cart-size">{ cartQuantity }</span>
+        <i className="fas fa-shopping-cart fa-2x" style={ { color: '#212529' } } />
+        <span style={ { color: '#212529' } }>{ cartQuantity }</span>
       </Link>
     );
   }

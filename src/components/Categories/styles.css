@@ -1,3 +1,7 @@
 .category {
   width: 100%;
 }
+
+.btn {
+  border-radius: 0;
+}

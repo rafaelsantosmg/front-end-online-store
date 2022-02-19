@@ -36,6 +36,7 @@ class ProdutctCard extends Component {
           justifyContent: 'space-between',
           padding: '10px',
           alignItems: 'center' } }
+        className="shadow bg-white rounded"
       >
         <Link
           to={ {
@@ -47,6 +48,7 @@ class ProdutctCard extends Component {
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
+            textDecoration: 'none',
           } }
         >
           <Card.Img
@@ -55,8 +57,8 @@ class ProdutctCard extends Component {
             src={ product.thumbnail }
           />
           <Card.Body>
-            <Card.Title>{ product.title }</Card.Title>
-            <Card.Text>
+            <Card.Title className="text-dark">{ product.title }</Card.Title>
+            <Card.Text className="text-dark">
               { product.price.toLocaleString('pt-br',
                 { style: 'currency', currency: 'BRL' }) }
             </Card.Text>
@@ -74,7 +76,7 @@ class ProdutctCard extends Component {
         </Link>
         <Button
           data-testid="product-add-to-cart"
-          variant="primary"
+          variant="dark"
           onClick={ () => addProductCart(product) }
           disabled={ product.buttonDisabled }
           style={ { width: '100%' } }

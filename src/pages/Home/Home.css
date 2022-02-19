@@ -1,0 +1,13 @@
+.bmMenu2::-webkit-scrollbar {
+  width: 12px;               /* width of the entire scrollbar */
+}
+
+.bmMenu2::-webkit-scrollbar-track {
+  background: #212529;        /* color of the tracking area */
+}
+
+.bmMenu2::-webkit-scrollbar-thumb {
+  background-color: #292f35;    /* color of the scroll thumb */
+  border: 3px solid #292f35;  /* creates padding around scroll thumb */
+  border-radius: 20px;       /* roundness of the scroll thumb */
+}
