@@ -8,6 +8,8 @@ import Cards from '../../components/Cards';
 import Categories from '../../components/Categories';
 import style from './styles';
 
+import './Home.css';
+
 class Home extends Component {
   constructor(props) {
     super(props);
@@ -48,9 +50,10 @@ class Home extends Component {
     const { handleClick, addProductCart, products } = this.props;
     const { menuOpen } = this.state;
     return (
-      <Container fluid style={ { padding: 0, margin: 0 } }>
+      <Container fluid style={ { padding: 0, margin: 0, backgroundColor: '#eee' } }>
         <Menu
           styles={ style }
+          menuClassName="bmMenu2"
           isOpen={ menuOpen }
           onStateChange={ (state) => this.handleStateChange(state) }
         >

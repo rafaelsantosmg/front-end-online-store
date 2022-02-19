@@ -3,7 +3,6 @@ import { BrowserRouter } from 'react-router-dom';
 import Routes from './Routes/Routes';
 import { getProductsFromCategoryAndQuery, getProductsFromItem } from './services/api';
 import Header from './components/Header';
-
 import './App.css';
 
 class App extends Component {
