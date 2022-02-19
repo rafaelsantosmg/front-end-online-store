@@ -6,10 +6,11 @@ import './Cards.css';
 
 class Cards extends Component {
   render() {
-    const { products, addProductCart } = this.props;
+    const { products, addProductCart, productsHome } = this.props;
+    const renderProducts = products.length > 0 ? products : productsHome;
     return (
       <div className="cards-contaniner">
-        { products.map((product) => (
+        { renderProducts.map((product) => (
           <ProdutctCard
             key={ product.id }
             addProductCart={ addProductCart }
@@ -27,11 +28,17 @@ Cards.propTypes = {
   products: PropTypes.arrayOf(PropTypes.shape({
     title: PropTypes.string,
     price: PropTypes.number,
-  })).isRequired,
+  })),
+  productsHome: PropTypes.arrayOf(PropTypes.shape({
+    title: PropTypes.string,
+    price: PropTypes.number,
+  })),
 };
 
 Cards.defaultProps = {
   addProductCart: () => { },
+  products: [],
+  productsHome: [],
 };
 
 export default Cards;
