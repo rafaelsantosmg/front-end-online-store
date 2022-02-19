@@ -27,18 +27,16 @@ export default class Categories extends Component {
     const { categories } = this.state;
     const { handleClick } = this.props;
     return (
-      <div className="category btn-dark">
-        {categories.map((category) => (
-          <Button
-            data-testid="category"
-            key={ category.id }
-            variant="dark"
-            onClick={ () => handleClick(category.id, '') }
-          >
-            { category.name }
-          </Button>
-        ))}
-      </div>
+      categories.map((category) => (
+        <Button
+          key={ category.id }
+          variant="dark"
+          style={ { width: '100%' } }
+          onClick={ () => handleClick(category.id, '') }
+        >
+          { category.name }
+        </Button>
+      ))
     );
   }
 }

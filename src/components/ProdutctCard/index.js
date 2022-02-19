@@ -29,15 +29,31 @@ class ProdutctCard extends Component {
 
     return (
 
-      <Card data-testid="product" style={ { width: '18rem' } }>
+      <Card
+        data-testid="product"
+        style={ {
+          width: '18rem',
+          justifyContent: 'space-between',
+          padding: '10px',
+          alignItems: 'center' } }
+      >
         <Link
           to={ {
             pathname: `/details/${product.id} `,
             product: { product },
           } }
           data-testid="product-detail-link"
+          style={ {
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+          } }
         >
-          <Card.Img variant="top" src={ product.thumbnail } />
+          <Card.Img
+            style={ { width: '150px' } }
+            variant="top"
+            src={ product.thumbnail }
+          />
           <Card.Body>
             <Card.Title>{ product.title }</Card.Title>
             <Card.Text>
@@ -61,6 +77,7 @@ class ProdutctCard extends Component {
           variant="primary"
           onClick={ () => addProductCart(product) }
           disabled={ product.buttonDisabled }
+          style={ { width: '100%' } }
         >
           Adicionar ao Carrinho
         </Button>

@@ -21,7 +21,7 @@ class Search extends Component {
     const { query } = this.state;
     const { handleClick } = this.props;
     return (
-      <InputGroup className="mb-3 search">
+      <InputGroup className="search">
         <FormControl
           data-testid="query-input"
           value={ query }

@@ -16,6 +16,7 @@ class App extends Component {
       cartTotalPrice: 0,
       cartQuantity: 0,
       isDisabled: false,
+      isHome: false,
     };
   }
 
@@ -159,15 +160,20 @@ class App extends Component {
     });
   };
 
+  handleIsHome = () => {
+    this.setState((prevState) => ({ isHome: !prevState.isHome }));
+  }
+
   render() {
     const { products, cartProduct, productDetails,
-      cartTotalPrice, cartQuantity, isDisabled } = this.state;
+      cartTotalPrice, cartQuantity, isDisabled, isHome } = this.state;
     return (
       <BrowserRouter>
         <Header
           handleClick={ this.handleClick }
           products={ products }
           cartQuantity={ cartQuantity }
+          isHome={ isHome }
         />
         <Routes
           handleClick={ this.handleClick }
@@ -183,6 +189,7 @@ class App extends Component {
           saveLocalStorage={ this.saveLocalStorage }
           isDisabled={ isDisabled }
           changeButtonDisabled={ this.changeButtonDisabled }
+          handleIsHome={ this.handleIsHome }
         />
       </BrowserRouter>
     );
