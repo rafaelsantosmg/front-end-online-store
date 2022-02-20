@@ -4,7 +4,7 @@
 }
 
 .style-custom-cardcart img {
-   width: 150px;
+  width: 150px;
 }
 
 .list-group-flush {
@@ -15,24 +15,23 @@
   max-width: 520px;
 }
 
-@media screen and (max-width: 700px) {
+@media screen and ( max-width : 700px ) {
 
   .style-custom-cardcart {
-    margin-bottom: 5px;    
     flex-direction: column;
+    margin-bottom: 5px;
   }
 
   .style-custom-cardcart img {
-    margin: 0 auto; 
+    margin: 0 auto;
     width: 50%;
- }
- 
- .list-group-flush {
-   width: 100%;
- }
- 
- .body-product-name {
-   max-width: 100%;
- }
+  }
 
+  .list-group-flush {
+    width: 100%;
+  }
+
+  .body-product-name {
+    max-width: 100%;
+  }
 }

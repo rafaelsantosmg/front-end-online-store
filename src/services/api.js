@@ -18,10 +18,3 @@ export async function getProductsFromItem(itemId) {
     .then((response) => response.json())
     .then((data) => data);
 }
-
-export async function getProductsFromHome() {
-  const URL_API = 'https://api.mercadolibre.com/sites/MLB/search?category=$CATEGORY_ID&q=$QUERY';
-  return fetch(URL_API)
-    .then((response) => response.json())
-    .then((data) => data.results);
-}

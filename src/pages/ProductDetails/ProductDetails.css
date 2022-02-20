@@ -16,11 +16,11 @@
   margin-top: 45px;
 }
 
-@media screen and (max-width: 700px) {
+@media screen and ( max-width : 700px ) {
 
   .product-detail-avaliable-content {
     width: 100%;
-  } 
+  }
 
   .product-detail-avaliable-content textarea {
     width: 100%;

@@ -7,11 +7,11 @@
   width: 350px;
 }
 
-@media screen and (max-width: 700px) {
-  
+@media screen and ( max-width : 700px ) {
+
   .style-custom {
     flex-direction: column;
-    width:100%;
+    width: 100%;
   }
 
   .style-custom img {

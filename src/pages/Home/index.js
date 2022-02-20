@@ -4,7 +4,6 @@ import Menu from 'react-burger-menu/lib/menus/bubble';
 import Container from 'react-bootstrap/Container';
 import Cards from '../../components/Cards';
 import Categories from '../../components/Categories';
-
 import style from './styles';
 import './Home.css';
 

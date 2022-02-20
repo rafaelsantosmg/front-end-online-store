@@ -2,11 +2,13 @@ import React, { Component } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import Routes from './Routes/Routes';
 import { getProductsFromCategoryAndQuery,
-  getProductsFromHome, getProductsFromItem } from './services/api';
+  getProductsFromItem,
+  getCategories } from './services/api';
 import Header from './components/Header';
 import './App.css';
 
-const THIRTY = 30;
+const TWENT = 20;
+
 class App extends Component {
   constructor() {
     super();
@@ -18,17 +20,31 @@ class App extends Component {
       cartQuantity: 0,
       isDisabled: false,
       isHome: false,
+      categories: [],
     };
   }
 
   componentDidMount() {
     this.loadLocalStorage();
-    getProductsFromHome()
-      .then((data) => {
-        const randon = this.getRandomInt(data.length);
-        const max = randon > THIRTY ? THIRTY : randon;
-        this.setState({ products: data.slice(max, data.length) });
-      });
+    this.categories();
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    const { categories } = this.state;
+    if (prevState.categories.length !== categories.length) {
+      const randon = this.getRandomInt(0, categories.length);
+      getProductsFromCategoryAndQuery(categories[randon].id, '')
+        .then((data) => {
+          this.setState({ products: data.results.slice(0, TWENT) });
+        });
+    }
+  }
+
+  categories = async () => {
+    const response = await getCategories();
+    this.setState({
+      categories: response,
+    });
   }
 
   getRandomInt = (max, min = 1) => {
