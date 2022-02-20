@@ -2,57 +2,27 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Menu from 'react-burger-menu/lib/menus/bubble';
 import Container from 'react-bootstrap/Container';
-import { getProductsFromCategoryAndQuery, getCategories } from '../../services/api';
 import Cards from '../../components/Cards';
 import Categories from '../../components/Categories';
 import style from './styles';
 import './Home.css';
-
-const TWENT = 20;
 
 class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
       menuOpen: false,
-      productsHome: [],
-      categories: [],
     };
   }
 
   componentDidMount() {
     const { handleIsHome } = this.props;
-    this.categories();
     handleIsHome();
-  }
-
-  componentDidUpdate(prevProp, prevState) {
-    const { categories } = this.state;
-    if (prevState.categories.length !== categories.length) {
-      const randon = this.getRandomInt(0, categories.length);
-      getProductsFromCategoryAndQuery(categories[randon].id, '')
-        .then((data) => {
-          this.setState({ productsHome: data.results.slice(0, TWENT) });
-        });
-    }
   }
 
   componentWillUnmount() {
     const { handleIsHome } = this.props;
     handleIsHome();
-  }
-
-  categories = async () => {
-    const response = await getCategories();
-    this.setState({
-      categories: response,
-    });
-  }
-
-  getRandomInt = (max, min = 1) => {
-    min = Math.ceil(min);
-    max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min)) + min;
   }
 
   handleStateChange = (state) => {
@@ -69,7 +39,7 @@ class Home extends Component {
 
   render() {
     const { handleClick, addProductCart, products } = this.props;
-    const { menuOpen, productsHome } = this.state;
+    const { menuOpen } = this.state;
     return (
       <Container fluid style={ { padding: 0, margin: 0, backgroundColor: '#eee' } }>
         <Menu
@@ -82,7 +52,6 @@ class Home extends Component {
         </Menu>
         <Cards
           products={ products }
-          productsHome={ productsHome }
           addProductCart={ addProductCart }
         />
       </Container>

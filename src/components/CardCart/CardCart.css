@@ -1,0 +1,37 @@
+.style-custom-cardcart {
+  flex-direction: row;
+  width: 100%;
+}
+
+.style-custom-cardcart img {
+  width: 150px;
+}
+
+.list-group-flush {
+  width: 20%;
+}
+
+.body-product-name {
+  max-width: 520px;
+}
+
+@media screen and ( max-width : 700px ) {
+
+  .style-custom-cardcart {
+    flex-direction: column;
+    margin-bottom: 5px;
+  }
+
+  .style-custom-cardcart img {
+    margin: 0 auto;
+    width: 50%;
+  }
+
+  .list-group-flush {
+    width: 100%;
+  }
+
+  .body-product-name {
+    max-width: 100%;
+  }
+}

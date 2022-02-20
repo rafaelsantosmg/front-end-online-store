@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import Routes from './Routes/Routes';
-import { getProductsFromCategoryAndQuery, getProductsFromItem } from './services/api';
+import { getProductsFromCategoryAndQuery,
+  getProductsFromItem,
+  getCategories } from './services/api';
 import Header from './components/Header';
 import './App.css';
+
+const TWENT = 20;
 
 class App extends Component {
   constructor() {
@@ -16,11 +20,37 @@ class App extends Component {
       cartQuantity: 0,
       isDisabled: false,
       isHome: false,
+      categories: [],
     };
   }
 
   componentDidMount() {
     this.loadLocalStorage();
+    this.categories();
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    const { categories } = this.state;
+    if (prevState.categories.length !== categories.length) {
+      const randon = this.getRandomInt(0, categories.length);
+      getProductsFromCategoryAndQuery(categories[randon].id, '')
+        .then((data) => {
+          this.setState({ products: data.results.slice(0, TWENT) });
+        });
+    }
+  }
+
+  categories = async () => {
+    const response = await getCategories();
+    this.setState({
+      categories: response,
+    });
+  }
+
+  getRandomInt = (max, min = 1) => {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min)) + min;
   }
 
   sumCart = () => {

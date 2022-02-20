@@ -4,16 +4,31 @@ import { Container } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import CardCart from '../../components/CardCart';
 
+import './ShoppingCart.css';
+
 class ShoppingCart extends Component {
   render() {
     const { cartProduct, increaseProductQuantity, decreaseProductQuantity,
       cartTotal, sumCart } = this.props;
     return (
       <Container>
-        <h1>Carrinho de compras</h1>
-        <Link to="/checkout" data-testid="checkout-products">Finalizar compra</Link>
+        <h1 style={ { margin: '20px 0' } }>Carrinho de compras</h1>
+        <Link
+          to="/checkout"
+          data-testid="checkout-products"
+          style={ {
+            textDecoration: 'none',
+            color: 'rgb(33, 37, 41)',
+            fontSize: '1.3rem',
+            fontWeight: '500',
+            marginTop: '10px',
+          } }
+        >
+          Finalizar compra
+
+        </Link>
         {cartProduct.length === 0 && (
-          <div>
+          <div className="cart-empty">
             <i className="fas fa-box-open fa-9x" />
             <p data-testid="shopping-cart-empty-message">Seu carrinho está vazio</p>
           </div>)}
