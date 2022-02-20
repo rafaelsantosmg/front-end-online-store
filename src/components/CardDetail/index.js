@@ -39,7 +39,7 @@ class CardDetail extends Component {
             data-testid="product-detail-add-to-cart"
             onClick={ () => addProductCart(productDetails) }
             disabled={ isDisabled }
-            style={ { height: '40px' } }
+            style={ { height: '55px' } }
             variant="dark"
           >
             Adicionar ao carrinho
