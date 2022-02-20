@@ -2,13 +2,13 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Menu from 'react-burger-menu/lib/menus/bubble';
 import Container from 'react-bootstrap/Container';
-import { getProductsFromHome } from '../../services/api';
+import { getProductsFromCategoryAndQuery, getCategories } from '../../services/api';
 import Cards from '../../components/Cards';
 import Categories from '../../components/Categories';
 import style from './styles';
 import './Home.css';
 
-const THIRTY = 30;
+const TWENT = 20;
 
 class Home extends Component {
   constructor(props) {
@@ -16,23 +16,37 @@ class Home extends Component {
     this.state = {
       menuOpen: false,
       productsHome: [],
+      categories: [],
     };
   }
 
   componentDidMount() {
     const { handleIsHome } = this.props;
+    this.categories();
     handleIsHome();
-    getProductsFromHome()
-      .then((data) => {
-        const randon = this.getRandomInt(data.length);
-        const max = randon > THIRTY ? THIRTY : randon;
-        this.setState({ productsHome: data.slice(max, data.length) });
-      });
+  }
+
+  componentDidUpdate(prevProp, prevState) {
+    const { categories } = this.state;
+    if (prevState.categories.length !== categories.length) {
+      const randon = this.getRandomInt(0, categories.length);
+      getProductsFromCategoryAndQuery(categories[randon].id, '')
+        .then((data) => {
+          this.setState({ productsHome: data.results.slice(0, TWENT) });
+        });
+    }
   }
 
   componentWillUnmount() {
     const { handleIsHome } = this.props;
     handleIsHome();
+  }
+
+  categories = async () => {
+    const response = await getCategories();
+    this.setState({
+      categories: response,
+    });
   }
 
   getRandomInt = (max, min = 1) => {
