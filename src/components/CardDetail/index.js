@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Card, Button, ListGroup, ListGroupItem } from 'react-bootstrap';
 
+import './CardDetail.css';
+
 class CardDetail extends Component {
   componentDidMount() {
     const { productId, getProduct } = this.props;
@@ -12,8 +14,11 @@ class CardDetail extends Component {
     const { addProductCart, productDetails, isDisabled } = this.props;
     const priceBRL = productDetails.price;
     return (
-      <Card style={ { width: '20rem' } }>
-        <Card.Img variant="top" src={ productDetails.thumbnail } />
+      <Card className="style-custom">
+        <Card.Img
+          variant="top"
+          src={ productDetails.thumbnail }
+        />
         <Card.Body>
           <Card.Title
             data-testid="product-detail-name"
@@ -29,15 +34,17 @@ class CardDetail extends Component {
             { `R$ ${priceBRL}` }
           </ListGroupItem>
         </ListGroup>
-        <Card.Body>
+        <Card.Footer style={ { display: 'flex', alignItems: 'center' } }>
           <Button
             data-testid="product-detail-add-to-cart"
             onClick={ () => addProductCart(productDetails) }
             disabled={ isDisabled }
+            style={ { height: '40px' } }
+            variant="dark"
           >
             Adicionar ao carrinho
           </Button>
-        </Card.Body>
+        </Card.Footer>
       </Card>
     );
   }

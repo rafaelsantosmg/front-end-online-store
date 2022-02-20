@@ -47,7 +47,7 @@ class AvaliableForm extends Component {
             data-testid="product-detail-evaluation"
           />
         </Form.Group>
-        <Button onClick={ handleClickAvaliable }>Avaliar</Button>
+        <Button variant="dark" onClick={ handleClickAvaliable }>Avaliar</Button>
       </Form>
     );
   }

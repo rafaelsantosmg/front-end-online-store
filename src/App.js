@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import Routes from './Routes/Routes';
-import { getProductsFromCategoryAndQuery, getProductsFromItem } from './services/api';
+import { getProductsFromCategoryAndQuery,
+  getProductsFromHome, getProductsFromItem } from './services/api';
 import Header from './components/Header';
 import './App.css';
 
+const THIRTY = 30;
 class App extends Component {
   constructor() {
     super();
@@ -21,6 +23,18 @@ class App extends Component {
 
   componentDidMount() {
     this.loadLocalStorage();
+    getProductsFromHome()
+      .then((data) => {
+        const randon = this.getRandomInt(data.length);
+        const max = randon > THIRTY ? THIRTY : randon;
+        this.setState({ products: data.slice(max, data.length) });
+      });
+  }
+
+  getRandomInt = (max, min = 1) => {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min)) + min;
   }
 
   sumCart = () => {

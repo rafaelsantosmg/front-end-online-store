@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Card, ListGroupItem, ListGroup, Button } from 'react-bootstrap';
 
+import './CardCart.css';
+
 export default class CardCart extends Component {
   componentDidMount() {
     const { sumCart } = this.props;
@@ -24,13 +26,16 @@ export default class CardCart extends Component {
           ) }
         </div>
         { cartProduct.map((product) => (
-          <Card style={ { width: '20rem' } } key={ product.id }>
-            <Card.Body>
+          <Card
+            className="style-custom-cardcart"
+            key={ product.id }
+          >
+            <Card.Img variant="top" src={ product.thumbnail } alt={ product.title } />
+            <Card.Body className="body-product-name">
               <Card.Title data-testid="shopping-cart-product-name">
                 { product.title }
               </Card.Title>
             </Card.Body>
-            <Card.Img variant="top" src={ product.thumbnail } alt={ product.title } />
             <ListGroup className="list-group-flush">
               <ListGroupItem>
                 { (product.price * product.quantity).toLocaleString('pt-br',
@@ -43,11 +48,12 @@ export default class CardCart extends Component {
                 { ` ${product.quantity}` }
               </ListGroupItem>
             </ListGroup>
-            <Card.Body>
+            <Card.Body className="d-flex justify-content-center align-items-center">
               <Button
                 data-testid="product-increase-quantity"
                 onClick={ () => increaseProductQuantity(product) }
                 disabled={ product.buttonDisabled }
+                variant="dark"
               >
                 +
               </Button>
@@ -55,6 +61,7 @@ export default class CardCart extends Component {
                 data-testid="product-decrease-quantity"
                 disabled={ product.quantity === 0 }
                 onClick={ () => decreaseProductQuantity(product) }
+                variant="dark"
               >
                 -
               </Button>
