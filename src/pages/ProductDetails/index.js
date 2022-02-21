@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import CardDetail from '../../components/CardDetail';
+import Header from '../../components/Header';
 import AvaliableForm from '../../components/AvaliableForm/AvaliableForm';
 
 import './ProductDetails.css';
@@ -61,45 +62,52 @@ class ProductDetail extends Component {
 
     render() {
       const { addProductCart, getProduct, productDetails, isDisabled,
-        match: { params: { id } } } = this.props;
+        products, cartQuantity, match: { params: { id } } } = this.props;
       const { rating, userAvaliable, userComent, coments } = this.state;
       return (
-        <Container>
-          <Row>
-            <Col>
-              <h1 className="product-details-title">Details</h1>
-              <CardDetail
-                addProductCart={ addProductCart }
-                productId={ id }
-                getProduct={ getProduct }
-                productDetails={ productDetails }
-                isDisabled={ isDisabled }
-              />
-            </Col>
-          </Row>
-          <Row className="product-detail-avaliable-content">
-            <Col>
-              <h1>Avaliações</h1>
-              <AvaliableForm
-                onStarClick={ this.onStarClick }
-                rating={ rating }
-                userAvaliable={ userAvaliable }
-                userComent={ userComent }
-                onChange={ this.onChange }
-                handleClickAvaliable={ this.handleClickAvaliable }
-              />
-            </Col>
-          </Row>
-          {coments.length > 0 ? (
-            <div className="product-detail-user-coment">
-              <AvaliableComent
-                rating={ rating }
-                userAvaliable={ userAvaliable }
-                userComent={ userComent }
-                coments={ coments }
-              />
-            </div>) : null}
-        </Container>
+        <>
+          <Header
+            handleClick={ this.handleClick }
+            products={ products }
+            cartQuantity={ cartQuantity }
+          />
+          <Container fluid style={ { width: '80%', margin: '0 auto' } }>
+            <Row>
+              <Col>
+                <h1 className="product-details-title">Details</h1>
+                <CardDetail
+                  addProductCart={ addProductCart }
+                  productId={ id }
+                  getProduct={ getProduct }
+                  productDetails={ productDetails }
+                  isDisabled={ isDisabled }
+                />
+              </Col>
+            </Row>
+            <Row className="product-detail-avaliable-content">
+              <Col>
+                <h1>Avaliações</h1>
+                <AvaliableForm
+                  onStarClick={ this.onStarClick }
+                  rating={ rating }
+                  userAvaliable={ userAvaliable }
+                  userComent={ userComent }
+                  onChange={ this.onChange }
+                  handleClickAvaliable={ this.handleClickAvaliable }
+                />
+              </Col>
+            </Row>
+            {coments.length > 0 ? (
+              <div className="product-detail-user-coment">
+                <AvaliableComent
+                  rating={ rating }
+                  userAvaliable={ userAvaliable }
+                  userComent={ userComent }
+                  coments={ coments }
+                />
+              </div>) : null}
+          </Container>
+        </>
       );
     }
 }
@@ -119,6 +127,8 @@ ProductDetail.propTypes = {
   }).isRequired,
   isDisabled: PropTypes.bool.isRequired,
   changeButtonDisabled: PropTypes.func.isRequired,
+  products: PropTypes.arrayOf(Object).isRequired,
+  cartQuantity: PropTypes.number.isRequired,
 };
 
 ProductDetail.defaultProps = {

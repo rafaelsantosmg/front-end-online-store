@@ -4,7 +4,6 @@ import Routes from './Routes/Routes';
 import { getProductsFromCategoryAndQuery,
   getProductsFromItem,
   getCategories } from './services/api';
-import Header from './components/Header';
 import './App.css';
 
 const TWENT = 20;
@@ -19,7 +18,6 @@ class App extends Component {
       cartTotalPrice: 0,
       cartQuantity: 0,
       isDisabled: false,
-      isHome: false,
       categories: [],
     };
   }
@@ -166,26 +164,17 @@ class App extends Component {
     });
   };
 
-  handleIsHome = () => {
-    this.setState((prevState) => ({ isHome: !prevState.isHome }));
-  }
-
   render() {
     const { products, cartProduct, productDetails,
-      cartTotalPrice, cartQuantity, isDisabled, isHome } = this.state;
+      cartTotalPrice, cartQuantity, isDisabled } = this.state;
     return (
       <BrowserRouter>
-        <Header
+        <Routes
           handleClick={ this.handleClick }
           products={ products }
           cartQuantity={ cartQuantity }
-          isHome={ isHome }
-        />
-        <Routes
-          handleClick={ this.handleClick }
           getProduct={ this.getProduct }
           addProductCart={ this.addProductCart }
-          products={ products }
           cartProduct={ cartProduct }
           productDetails={ productDetails }
           increaseProductQuantity={ this.increaseProductQuantity }
@@ -195,7 +184,6 @@ class App extends Component {
           saveLocalStorage={ this.saveLocalStorage }
           isDisabled={ isDisabled }
           changeButtonDisabled={ this.changeButtonDisabled }
-          handleIsHome={ this.handleIsHome }
         />
       </BrowserRouter>
     );

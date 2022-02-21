@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import logoHeader from '../../images/mercadolibre.svg';
@@ -7,31 +7,37 @@ import Cart from '../ButtonCart';
 
 import './styles.css';
 
-function Header({ handleClick, cartQuantity, isHome }) {
-  return (
-    <header className="header">
-      <figure className="header-logo-container">
-        <Link to="/">
-          { !isHome && <img className="header-logo" src={ logoHeader } alt="Logo MLB" /> }
-        </Link>
-      </figure>
-      <Search
-        handleClick={ handleClick }
-      />
-      <Cart cartQuantity={ cartQuantity } />
-    </header>
-  );
+class Header extends Component {
+  render() {
+    const { handleClick, cartQuantity, location: { pathname } } = this.props;
+    return (
+      <header className="header">
+        <figure className="header-logo-container">
+          { pathname !== '/' && (
+            <Link to="/">
+              <img className="header-logo" src={ logoHeader } alt="Logo MLB" />
+            </Link>) }
+        </figure>
+        <Search
+          handleClick={ handleClick }
+        />
+        <Cart cartQuantity={ cartQuantity } />
+      </header>
+    );
+  }
 }
 
 Header.propTypes = {
   handleClick: PropTypes.func,
   cartQuantity: PropTypes.number.isRequired,
-  isHome: PropTypes.bool,
+  location: PropTypes.shape({
+    pathname: PropTypes.string,
+  }),
 };
 
 Header.defaultProps = {
   handleClick: () => {},
-  isHome: false,
+  location: {},
 };
 
 export default Header;
