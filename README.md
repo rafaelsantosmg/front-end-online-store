@@ -1,4 +1,3 @@
-
 # Project Front-End Online Store
 
 Este projeto foi desenvolvido usando os conhecimentos adquiridos no curso de desenvolvimento web da Trybe, projeto esse inspirado no site de compras Mercado Livre, utilizando a API do mercado libre.
@@ -14,10 +13,15 @@ Este projeto foi desenvolvido usando os conhecimentos adquiridos no curso de des
 
 
 ## Aprendizados
-Trabalhar com comonentes, passando props pela rota.
+
+Trabalhar com componentes, passando props pela rota (prop drilling).
+
 Entender o que são Métodos Ágeis ;
+
 Entender o que é Kanban ;
+
 Entender o que é Scrum ;
+
 Trabalhar em equipes utilizando Kanban ou Scrum de maneira eficaz.
 
 ## Screenshots
