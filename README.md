@@ -27,7 +27,9 @@ Trabalhar em equipes utilizando Kanban ou Scrum de maneira eficaz.
 ## Screenshots
 
 ![App Screenshot](https://user-images.githubusercontent.com/42968718/154967797-0d6f514e-1719-4e52-b139-c1e8f0923818.png)
+## Demonstração
 
+https://front-end-online-store-omega.vercel.app/
 
 ## Stack utilizada
 
