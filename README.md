@@ -26,10 +26,10 @@ Trabalhar em equipes utilizando Kanban ou Scrum de maneira eficaz.
 
 ## Screenshots
 
-![App Screenshot](https://user-images.githubusercontent.com/42968718/154967797-0d6f514e-1719-4e52-b139-c1e8f0923818.png)
-## Demonstração
+## [Demonstração](https://front-end-online-store-omega.vercel.app/)
 
-https://front-end-online-store-omega.vercel.app/
+![App Screenshot](https://user-images.githubusercontent.com/42968718/154967797-0d6f514e-1719-4e52-b139-c1e8f0923818.png)
+
 
 ## Stack utilizada
 
@@ -66,7 +66,7 @@ Inicie o servidor
 <table>
   <tr>
     <td align="center"><a href=https://github.com/rafaelsantosmg"><img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/68519691?v=4" width="100px;" alt=""/><br /><sub><b>Rafael Santos</b></sub></a><br /><a href="https://github.com/rafaelsantosmg" title="rafaelsantosmg"></a></td>
-    <td align="center"><a href="https://github.com/eemr3"><img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/42968718?v=4" width="100px;" alt=""/><br /><sub><b>Claudio Orlandi</b></sub></a><br /><a href="https://github.com/eemr3/" title="eemr3"></a></td>
+    <td align="center"><a href="https://github.com/eemr3"><img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/42968718?v=4" width="100px;" alt=""/><br /><sub><b>Emerson Moreira</b></sub></a><br /><a href="https://github.com/eemr3/" title="eemr3"></a></td>
   </tr>
 </table>
 ## Licença
