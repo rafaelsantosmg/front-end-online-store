@@ -1,7 +1,9 @@
 .avaliableComent-container {
   border-bottom: 1px solid black;
+  display: flex;
+  justify-content: center;
   margin: 15px 10px;
-  width: 97%;
+  width: 100%;
 }
 
 .avaliableComent-content-user {

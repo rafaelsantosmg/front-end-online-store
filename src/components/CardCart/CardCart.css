@@ -15,6 +15,20 @@
   max-width: 520px;
 }
 
+.cart-total {
+  color: #a52a2b;
+  font-size: x-large;
+  font-weight: 900;
+}
+
+.cart-total-title {
+  color: #111;
+}
+
+.total-cart {
+  margin-top: 10px;
+}
+
 @media screen and ( max-width : 700px ) {
 
   .style-custom-cardcart {

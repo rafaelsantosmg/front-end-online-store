@@ -7,12 +7,12 @@ import Cart from '../ButtonCart';
 
 import './styles.css';
 
-function Header({ handleClick, cartQuantity, isHome }) {
+function Header({ handleClick, cartQuantity }) {
   return (
     <header className="header">
       <figure className="header-logo-container">
         <Link to="/">
-          { !isHome && <img className="header-logo" src={ logoHeader } alt="Logo MLB" /> }
+          <img className="header-logo" src={ logoHeader } alt="Logo MLB" />
         </Link>
       </figure>
       <Search
@@ -26,12 +26,10 @@ function Header({ handleClick, cartQuantity, isHome }) {
 Header.propTypes = {
   handleClick: PropTypes.func,
   cartQuantity: PropTypes.number.isRequired,
-  isHome: PropTypes.bool,
 };
 
 Header.defaultProps = {
   handleClick: () => {},
-  isHome: false,
 };
 
 export default Header;

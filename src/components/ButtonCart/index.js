@@ -8,7 +8,7 @@ class ButtonCart extends Component {
     return (
       <Link
         to="/cart"
-        style={ { textDecoration: 'none' } }
+        style={ { textDecoration: 'none', width: '20%', textAlign: 'center' } }
       >
         {' '}
         <i className="fas fa-shopping-cart fa-2x" style={ { color: '#212529' } } />

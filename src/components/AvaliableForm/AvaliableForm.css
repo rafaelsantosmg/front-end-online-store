@@ -1,13 +1,26 @@
 .avaliable-form-container {
   align-items: center;
   display: flex;
+  width: 100%;
 }
 
 .form-input-email {
   margin-right: 10px;
-  width: 300px;
+  width: 50%;
 }
 
 .form-input-textarea {
-  width: 36%;
+  width: 50%;
+}
+
+@media screen and ( max-width : 700px ) {
+
+  .avaliable-form-container {
+    flex-direction: column;
+  }
+
+  .form-input-email, .form-input-textarea {
+    margin-right: 10px;
+    width: 200px;
+  }
 }

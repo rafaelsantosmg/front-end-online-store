@@ -29,7 +29,6 @@ class CardDetail extends Component {
         </Card.Body>
         <ListGroup className="list-group-flush">
           <ListGroupItem>{ productDetails.id }</ListGroupItem>
-          <ListGroupItem>Dapibus ac facilisis in</ListGroupItem>
           <ListGroupItem>
             { `R$ ${priceBRL}` }
           </ListGroupItem>

@@ -1,10 +1,10 @@
 .style-custom {
   flex-direction: row;
-  width: 50rem;
+  width: 100%;
 }
 
 .style-custom img {
-  width: 350px;
+  width: 200px;
 }
 
 @media screen and ( max-width : 700px ) {
@@ -15,6 +15,6 @@
   }
 
   .style-custom img {
-    width: 200px;
+    width: 150px;
   }
 }

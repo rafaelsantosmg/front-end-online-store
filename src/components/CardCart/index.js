@@ -15,16 +15,6 @@ export default class CardCart extends Component {
       decreaseProductQuantity, cartTotal } = this.props;
     return (
       <div>
-        <div>
-          { cartTotal !== 0 && (
-            <p>
-              {
-                cartTotal.toLocaleString('pt-br',
-                  { style: 'currency', currency: 'BRL' })
-              }
-            </p>
-          ) }
-        </div>
         { cartProduct.map((product) => (
           <Card
             className="style-custom-cardcart"
@@ -68,6 +58,18 @@ export default class CardCart extends Component {
             </Card.Body>
           </Card>
         )) }
+        <div className="total-cart">
+          { cartTotal !== 0 && (
+            <span className="cart-total">
+              <span className="cart-total-title">Total:</span>
+              { ' ' }
+              {
+                cartTotal.toLocaleString('pt-br',
+                  { style: 'currency', currency: 'BRL' })
+              }
+            </span>
+          ) }
+        </div>
       </div>
     );
   }
